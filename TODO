@@ -1,0 +1,4 @@
+*   Add Microsoft Visual C++ solution.
+*   Improve thread safety.
+*   Add option to compile as REAPER extension.
+*   Improve and prettify documentation.
