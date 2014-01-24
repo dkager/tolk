@@ -1,5 +1,7 @@
-Tolk :: Screen Reader Abstraction Library
-=========================================
+Tolk
+====
+
+Screen Reader Abstraction Library
 
 
 Introduction
