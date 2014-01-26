@@ -95,4 +95,5 @@ Contributors
 
 *   Davy Kager
 *   Leonard de Ruijter
+*   Axel Vugts
 *   QuentinC, who has developed [Universal Speech](https://github.com/QuentinC-Github/UniversalSpeech), another great screen reader library
