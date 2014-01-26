@@ -28,6 +28,7 @@ VS_VERSION_INFO VERSIONINFO
       #else
       VALUE "FileDescription", "Tolk Dynamic-Link Library (x86)"
       #endif
+      VALUE "LegalCopyright", "(c) 2014, Davy Kager"
       VALUE "FileVersion", TOLK_FILEVERSION_STR
       VALUE "InternalName", "Tolk"
       VALUE "OriginalFilename", "Tolk.dll"
