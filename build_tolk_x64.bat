@@ -1,6 +1,6 @@
 @echo off
 
-cl /nologo /c /Od /Ot /Oy /EHsc /GF /GL /GR- /Gy /MD /vmb /vms /MP /W3 /WL /DUNICODE /D_DLL /D_UNICODE /DWIN64 /DNDEBUG /D_WINDOWS /D_USRDLL /D_WINDLL /D_EXPORTING /Fobin\x64\ src\*.c src\*.cpp src\java\*.cpp
+cl /nologo /c /Ob2 /Oi /Ot /Oy /EHsc /GF /GL /GR- /Gs /Gy /MD /vmb /vms /MP /W3 /WL /DUNICODE /D_DLL /D_UNICODE /DWIN64 /DNDEBUG /D_WINDOWS /D_USRDLL /D_WINDLL /D_EXPORTING /Fobin\x64\ src\*.c src\*.cpp src\java\*.cpp
 
 rc /nologo /n /d _WIN64 /fo bin\x64\Tolk.res src\Tolk.rc
 
