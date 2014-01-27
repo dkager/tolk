@@ -22,10 +22,10 @@ public:
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt = false);
 private:
-  typedef error_status_t (*NVDAController_speakText)(const wchar_t*);
-  typedef error_status_t (*NVDAController_brailleMessage)(const wchar_t*);
-  typedef error_status_t (*NVDAController_cancelSpeech)();
-  typedef error_status_t (*NVDAController_testIfRunning)();
+  typedef error_status_t (* __cdecl NVDAController_speakText)(const wchar_t*);
+  typedef error_status_t (* __cdecl NVDAController_brailleMessage)(const wchar_t*);
+  typedef error_status_t (* __cdecl NVDAController_cancelSpeech)();
+  typedef error_status_t (* __cdecl NVDAController_testIfRunning)();
   HINSTANCE controller;
   NVDAController_speakText nvdaController_speakText;
   NVDAController_brailleMessage nvdaController_brailleMessage;

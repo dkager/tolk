@@ -22,10 +22,10 @@ public:
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt = false);
 private:
-  typedef bool (*SA_SayW)(const wchar_t*);
-  typedef bool (*SA_BrlShowTextW)(const wchar_t*);
-  typedef bool (*SA_StopAudio)();
-  typedef bool (*SA_IsRunning)();
+  typedef bool (* __cdecl SA_SayW)(const wchar_t*);
+  typedef bool (* __cdecl SA_BrlShowTextW)(const wchar_t*);
+  typedef bool (* __cdecl SA_StopAudio)();
+  typedef bool (* __cdecl SA_IsRunning)();
   HINSTANCE controller;
   SA_SayW sa_SayW;
   SA_BrlShowTextW sa_BrlShowTextW;
