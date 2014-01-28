@@ -1,0 +1,39 @@
+/**
+ *  Product:        Tolk
+ *  File:           TolkDotNet.rc
+ *  Description:    Version and other meta information for the .NET DLL.
+ *  Copyright:      (c) 2014, Davy Kager <mail@davykager.nl>
+ *  License:        LGPLv3
+ */
+
+#include <windows.h>
+#include "..\TolkVersion.h"
+
+VS_VERSION_INFO VERSIONINFO
+  FILEVERSION TOLK_FILEVERSION
+  PRODUCTVERSION TOLK_PRODUCTVERSION
+  FILEFLAGSMASK 0x0L
+  FILEFLAGS 0x0L
+  FILEOS VOS_NT_WINDOWS32
+  FILETYPE VFT_DLL
+  FILESUBTYPE VFT2_UNKNOWN
+{
+  BLOCK "StringFileInfo"
+  {
+    BLOCK "040904B0"
+    {
+      VALUE "CompanyName", "Davy Kager"
+      VALUE "FileDescription", "Tolk .NET Dynamic-Link Library"
+      VALUE "LegalCopyright", "(c) 2014, Davy Kager"
+      VALUE "FileVersion", TOLK_FILEVERSION_STR
+      VALUE "InternalName", "TolkDotNet"
+      VALUE "OriginalFilename", "TolkDotNet.dll"
+      VALUE "ProductName", "Tolk"
+      VALUE "ProductVersion", TOLK_PRODUCTVERSION_STR
+    }
+  }
+  BLOCK "VarFileInfo"
+  {
+    VALUE "Translation", 0x0409, 0x04B0
+  }
+}

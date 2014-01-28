@@ -1,2 +1,4 @@
 @echo off
-csc /nologo /optimize /target:library /out:bin\TolkDotNet.dll src\dotnet\Tolk.cs
+rc /nologo /n /fo bin\TolkDotNet.res src\dotnet\TolkDotNet.rc
+csc /nologo /optimize /target:library /win32res:bin\TolkDotNet.res /out:bin\TolkDotNet.dll /warn:3 src\dotnet\Tolk.cs
+del bin\TolkDotNet.res
