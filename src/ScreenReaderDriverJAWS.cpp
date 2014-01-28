@@ -77,7 +77,7 @@ bool ScreenReaderDriverJAWS::Output(const wchar_t *str, bool interrupt) {
 void ScreenReaderDriverJAWS::Initialize() {
   if (!SUCCEEDED(CoCreateInstance(CLSID_JawsApi, NULL, CLSCTX_INPROC_SERVER, IID_IJawsApi, (void **)&controller))) {
     // This is here for symmetry with other drivers
-    // and so compiling /analyze won't throw a warning
+    // and so compiling /analyze won't throw a warning.
     return;
   }
 }

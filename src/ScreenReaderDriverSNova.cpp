@@ -28,7 +28,7 @@
 ScreenReaderDriverSNova::ScreenReaderDriverSNova() :
   ScreenReaderDriver(L"SuperNova", true, false),
   #ifdef _WIN64
-  // Dolphin is not currently providing this library
+  // Dolphin is not currently providing this library.
   controller(LoadLibrary(L"dolapi64.dll")),
   #else
   controller(LoadLibrary(L"dolapi32.dll")),
