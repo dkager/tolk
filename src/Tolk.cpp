@@ -24,6 +24,7 @@ using namespace std;
 array<ScreenReaderDriver *, NSCREENREADERDRIVERS> *g_screenReaderDrivers = NULL;
 ScreenReaderDriverSAPI *g_sapi = NULL;
 ScreenReaderDriver *g_currentScreenReaderDriver = NULL;
+bool g_trySAPI = false;
 
 #ifdef __cplusplus
 extern "C" {
@@ -40,7 +41,9 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
     (*g_screenReaderDrivers)[3] = new ScreenReaderDriverSNova();
     (*g_screenReaderDrivers)[4] = new ScreenReaderDriverSA();
     (*g_screenReaderDrivers)[5] = new ScreenReaderDriverZT();
-    g_sapi = new ScreenReaderDriverSAPI();
+    if (g_trySAPI) {
+      g_sapi = new ScreenReaderDriverSAPI();
+    }
     Tolk_DetectScreenReader();
   }
 }
@@ -52,8 +55,10 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsLoaded() {
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
   if (Tolk_IsLoaded()) {
     g_currentScreenReaderDriver = NULL;
-    delete g_sapi;
-    g_sapi = NULL;
+    if (g_sapi) {
+      delete g_sapi;
+      g_sapi = NULL;
+    }
     for (int i = NSCREENREADERDRIVERS - 1; i >= 0; --i) {
       delete (*g_screenReaderDrivers)[i];
     }
@@ -61,6 +66,17 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
     g_screenReaderDrivers = NULL;
   }
   CoUninitialize();
+}
+
+TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
+  if (trySAPI && !g_sapi) {
+    g_sapi = new ScreenReaderDriverSAPI();
+  }
+  else if (!trySAPI && g_sapi) {
+    delete g_sapi;
+    g_sapi = NULL;
+  }
+  g_trySAPI = trySAPI;
 }
 
 TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
