@@ -48,7 +48,7 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsLoaded() {
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
   if (Tolk_IsLoaded()) {
-    for (int i = 0; i < NSCREENREADERDRIVERS; ++i) {
+    for (int i = NSCREENREADERDRIVERS - 1; i >= 0; --i) {
       delete (*g_screenReaderDrivers)[i];
     }
     delete g_screenReaderDrivers;
@@ -74,89 +74,45 @@ TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_HasSpeech() {
-  if (!Tolk_IsLoaded()) return false;
-  if (g_currentScreenReaderDriver) {
-    return g_currentScreenReaderDriver->HasSpeech();
-  }
-  else if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->HasSpeech();
   }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_HasBraille() {
-  if (!Tolk_IsLoaded()) return false;
-  if (g_currentScreenReaderDriver) {
-    return g_currentScreenReaderDriver->HasBraille();
-  }
-  else if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->HasBraille();
   }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Output(const wchar_t *str, bool interrupt) {
-  if (!Tolk_IsLoaded()) return false;
   if (!str) return false;
-  if (g_currentScreenReaderDriver) {
-    if (g_currentScreenReaderDriver->Output(str, interrupt)) return true;
-    g_currentScreenReaderDriver = NULL;
-    if (Tolk_DetectScreenReader()) {
-      return g_currentScreenReaderDriver->Output(str, interrupt);
-    }
-    return false;
-  }
-  else if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Output(str, interrupt);
   }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Speak(const wchar_t *str, bool interrupt) {
-  if (!Tolk_IsLoaded()) return false;
   if (!str) return false;
-  if (g_currentScreenReaderDriver) {
-    if (g_currentScreenReaderDriver->Speak(str, interrupt)) return true;
-    g_currentScreenReaderDriver = NULL;
-    if (Tolk_DetectScreenReader()) {
-      return g_currentScreenReaderDriver->Speak(str, interrupt);
-    }
-    return false;
-  }
-  else if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Speak(str, interrupt);
   }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Braille(const wchar_t *str) {
-  if (!Tolk_IsLoaded()) return false;
   if (!str) return false;
-  if (g_currentScreenReaderDriver) {
-    if (g_currentScreenReaderDriver->Braille(str)) return true;
-    g_currentScreenReaderDriver = NULL;
-    if (Tolk_DetectScreenReader()) {
-      return g_currentScreenReaderDriver->Braille(str);
-    }
-    return false;
-  }
-  else if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Braille(str);
   }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Silence() {
-  if (!Tolk_IsLoaded()) return false;
-  if (g_currentScreenReaderDriver) {
-    if (g_currentScreenReaderDriver->Silence()) return true;
-    g_currentScreenReaderDriver = NULL;
-    if (Tolk_DetectScreenReader()) {
-      return g_currentScreenReaderDriver->Silence();
-    }
-    return false;
-  }
-  else if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Silence();
   }
   return false;
