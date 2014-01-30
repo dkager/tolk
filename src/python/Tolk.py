@@ -19,6 +19,14 @@ is_loaded = _proto_is_loaded(("Tolk_IsLoaded", _tolk))
 _proto_unload = CFUNCTYPE(None)
 unload = _proto_unload(("Tolk_Unload", _tolk))
 
+_proto_try_sapi = CFUNCTYPE(None, c_bool)
+_param_try_sapi = (1, "try_sapi"),
+try_sapi = _proto_try_sapi(("Tolk_TrySAPI", _tolk), _param_try_sapi)
+
+_proto_prefer_sapi = CFUNCTYPE(None, c_bool)
+_param_prefer_sapi = (1, "prefer_sapi"),
+prefer_sapi = _proto_prefer_sapi(("Tolk_PreferSAPI", _tolk), _param_prefer_sapi)
+
 _proto_detect_screen_reader = CFUNCTYPE(c_wchar_p)
 detect_screen_reader = _proto_detect_screen_reader(("Tolk_DetectScreenReader", _tolk))
 
