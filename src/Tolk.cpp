@@ -91,11 +91,19 @@ TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
   if (g_currentScreenReaderDriver && g_currentScreenReaderDriver->IsActive()) {
     return g_currentScreenReaderDriver->GetName();
   }
+  if (g_trySAPI && g_preferSAPI && g_sapi && g_sapi->IsActive()) {
+    g_currentScreenReaderDriver = g_sapi;
+    return g_currentScreenReaderDriver->GetName();
+  }
   for (int i = 0; i < NSCREENREADERDRIVERS; ++i) {
     if ((*g_screenReaderDrivers)[i] != g_currentScreenReaderDriver && (*g_screenReaderDrivers)[i]->IsActive()) {
       g_currentScreenReaderDriver = (*g_screenReaderDrivers)[i];
       return g_currentScreenReaderDriver->GetName();
     }
+  }
+  if (g_trySAPI && !g_preferSAPI && g_sapi && g_sapi->IsActive()) {
+    g_currentScreenReaderDriver = g_sapi;
+    return g_currentScreenReaderDriver->GetName();
   }
   g_currentScreenReaderDriver = NULL;
   return NULL;
