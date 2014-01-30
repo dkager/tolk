@@ -75,7 +75,7 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_HasBraille();
 
 /**
  *  Name:         Tolk_Output
- *  Description:  Outputs text through the current screen reader driver, if one is set.  If none is set or if it encountered an error, tries to detect the currently active screen reader before outputting the given text.  This is the preferred function to use for sending text to a screen reader, because it uses all of the supported output methods (i.e. speech and/or braille depending on the current screen reader driver).  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.
+ *  Description:  Outputs text through the current screen reader driver, if one is set.  If none is set or if it encountered an error, tries to detect the currently active screen reader before outputting the given text.  This is the preferred function to use for sending text to a screen reader, because it uses all of the supported output methods (i.e. speech and/or braille depending on the current screen reader driver).  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.  This function is asynchronous.
  *  Parameters:   str: text to output.
  *                interrupt: optional; whether or not to first cancel any previous speech.
  *  Returns:      true on success, false otherwise.
@@ -88,7 +88,7 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Output(const wchar_t *str, bool interrupt)
 
 /**
  *  Name:         Tolk_Speak
- *  Description:  Speaks text through the current screen reader driver, if one is set and supports speech output.  If none is set or if it encountered an error, tries to detect the currently active screen reader before speaking the given text.  Use this function only if you specifically need to speak text through the current screen reader driver without also brailling it.  Not all screen reader drivers may support this functionality.  Therefore, use Tolk_Output whenever possible, because it uses all of the supported output methods (i.e. speech and/or braille depending on the current screen reader driver).  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.
+ *  Description:  Speaks text through the current screen reader driver, if one is set and supports speech output.  If none is set or if it encountered an error, tries to detect the currently active screen reader before speaking the given text.  Use this function only if you specifically need to speak text through the current screen reader driver without also brailling it.  Not all screen reader drivers may support this functionality.  Therefore, use Tolk_Output whenever possible, because it uses all of the supported output methods (i.e. speech and/or braille depending on the current screen reader driver).  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.  This function is asynchronous.
  *  Parameters:   str: text to speak.
  *                interrupt: optional; whether or not to first cancel any previous speech.
  *  Returns:      true on success, false otherwise.
