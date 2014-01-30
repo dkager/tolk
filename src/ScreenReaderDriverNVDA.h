@@ -16,11 +16,11 @@ class ScreenReaderDriverNVDA : public ScreenReaderDriver {
 public:
   ScreenReaderDriverNVDA();
   ~ScreenReaderDriverNVDA();
-  bool Speak(const wchar_t *str, bool interrupt = false);
+  bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *str);
   bool Silence();
   bool IsActive();
-  bool Output(const wchar_t *str, bool interrupt = false);
+  bool Output(const wchar_t *str, bool interrupt);
 private:
   typedef error_status_t (__stdcall *NVDAController_speakText)(const wchar_t*);
   typedef error_status_t (__stdcall *NVDAController_brailleMessage)(const wchar_t*);

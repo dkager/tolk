@@ -16,11 +16,11 @@ class ScreenReaderDriverWE : public ScreenReaderDriver {
 public:
   ScreenReaderDriverWE();
   ~ScreenReaderDriverWE();
-  bool Speak(const wchar_t *str, bool interrupt = false);
+  bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *str);
   bool Silence();
   bool IsActive();
-  bool Output(const wchar_t *str, bool interrupt = false);
+  bool Output(const wchar_t *str, bool interrupt);
 private:
   void Initialize();
   void Finalize();
