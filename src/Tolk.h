@@ -49,10 +49,20 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsLoaded();
  */
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload();
 
-// TODO: add documentation
+/**
+ *  Name:         Tolk_TrySAPI
+ *  Description:  Sets if Microsoft Speech API (SAPI) should be used in the screen reader auto-detection process.  The default is not to include SAPI.  The SAPI driver will use the system default synthesizer, voice and soundcard.  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.  You do not need to call Tolk_Unload or Tolk_Load after calling this function.
+ *  Parameters:   trySAPI: whether or not to include SAPI in auto-detection.
+ *  Returns:      None.
+ */
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI);
 
-// TODO: add documentation
+/**
+ *  Name:         Tolk_PreferSAPI
+ *  Description:  If support for SAPI has been turned on, sets if SAPI should be placed first (true) or last (false) in the screen reader detection list.  Putting it last is the default and is good for using SAPI as a fallback option.  Putting it first is good for ensuring SAPI is used even when a screen reader is running, but keep in mind screen readers will still be tried if SAPI is unavailable.  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.  You do not need to call Tolk_Unload or Tolk_Load after calling this function.
+ *  Parameters:   preferSAPI: whether or not to prefer SAPI over screen reader drivers in auto-detection.
+ *  Returns:      None.
+ */
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI);
 
 /**
