@@ -15,6 +15,8 @@ namespace DavyKager {
     [DllImport("Tolk.dll")] private static extern void Tolk_Load();
     [DllImport("Tolk.dll")] private static extern bool Tolk_IsLoaded();
     [DllImport("Tolk.dll")] private static extern void Tolk_Unload();
+    [DllImport("Tolk.dll")] private static extern void Tolk_TrySAPI(bool trySAPI);
+    [DllImport("Tolk.dll")] private static extern void Tolk_PreferSAPI(bool preferSAPI);
     [DllImport("Tolk.dll")] private static extern IntPtr Tolk_DetectScreenReader();
     [DllImport("Tolk.dll")] private static extern bool Tolk_HasSpeech();
     [DllImport("Tolk.dll")] private static extern bool Tolk_HasBraille();
@@ -29,6 +31,8 @@ namespace DavyKager {
     public static void Load() { Tolk_Load(); }
     public static bool IsLoaded() { return Tolk_IsLoaded(); }
     public static void Unload() { Tolk_Unload(); }
+    public static void TrySAPI(bool trySAPI) { Tolk_TrySAPI(trySAPI); }
+    public static void PreferSAPI(bool preferSAPI) { Tolk_PreferSAPI(preferSAPI); }
     public static bool HasSpeech() { return Tolk_HasSpeech(); }
     public static bool HasBraille() { return Tolk_HasBraille(); }
     public static bool Silence() { return Tolk_Silence(); }
