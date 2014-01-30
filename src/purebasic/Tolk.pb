@@ -10,6 +10,8 @@ DeclareModule Tolk
   Declare Load()
   Declare.a IsLoaded()
   Declare Unload()
+  Declare TrySAPI(trySAPI.a)
+  Declare PreferSAPI(preferSAPI.a)
   Declare.s DetectScreenReader()
   Declare.a HasSpeech()
   Declare.a HasBraille()
@@ -24,6 +26,8 @@ Module Tolk
     Tolk_Load()
     Tolk_IsLoaded.a()
     Tolk_Unload()
+    Tolk_TrySAPI(trySAPI.a)
+    Tolk_PreferSAPI(preferSAPI.a)
     Tolk_DetectScreenReader()
     Tolk_HasSpeech.a()
     Tolk_HasBraille.a()
@@ -43,6 +47,14 @@ Module Tolk
 
   Procedure Unload()
     Tolk_Unload()
+  EndProcedure
+
+  Procedure TrySAPI(trySAPI.a)
+    Tolk_TrySAPI(trySAPI)
+  EndProcedure
+
+  Procedure PreferSAPI(preferSAPI.a)
+    Tolk_PreferSAPI(preferSAPI)
   EndProcedure
 
   Procedure.s DetectScreenReader()
