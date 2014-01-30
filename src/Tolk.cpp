@@ -25,6 +25,7 @@ array<ScreenReaderDriver *, NSCREENREADERDRIVERS> *g_screenReaderDrivers = NULL;
 ScreenReaderDriverSAPI *g_sapi = NULL;
 ScreenReaderDriver *g_currentScreenReaderDriver = NULL;
 bool g_trySAPI = false;
+bool g_preferSAPI = false;
 
 #ifdef __cplusplus
 extern "C" {
@@ -77,6 +78,10 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
     g_sapi = NULL;
   }
   g_trySAPI = trySAPI;
+}
+
+TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI) {
+  g_preferSAPI = preferSAPI;
 }
 
 TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {

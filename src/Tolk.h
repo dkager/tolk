@@ -52,6 +52,9 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload();
 // TODO: add documentation
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI);
 
+// TODO: add documentation
+TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI);
+
 /**
  *  Name:         Tolk_DetectScreenReader
  *  Description:  Returns the common name for the currently active screen reader driver, if one is set.  If none is set, tries to detect the currently active screen reader before looking up the name.  If no screen reader is active, NULL is returned.  Note that the drivers hard-code the common name, it is not requested from the screen reader itself.  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.
