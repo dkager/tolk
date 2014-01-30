@@ -82,6 +82,7 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI) {
   g_preferSAPI = preferSAPI;
+  g_currentScreenReaderDriver = NULL;
   Tolk_DetectScreenReader();
 }
 
