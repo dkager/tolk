@@ -6,8 +6,8 @@
  *  License:        LGPLv3
  */
 
-#ifndef _SCREENREADER_DRIVER_ZT_H_
-#define _SCREENREADER_DRIVER_ZT_H_
+#ifndef _SCREEN_READER_DRIVER_ZT_H_
+#define _SCREEN_READER_DRIVER_ZT_H_
 
 #include "zt.h"
 #include "ScreenReaderDriver.h"
@@ -29,4 +29,4 @@ private:
   ISpeech2 *speech;
 };
 
-#endif // _SCREENREADER_DRIVER_ZT_H_
+#endif // _SCREEN_READER_DRIVER_ZT_H_

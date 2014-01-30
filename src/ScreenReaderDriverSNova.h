@@ -6,8 +6,8 @@
  *  License:        LGPLv3
  */
 
-#ifndef _SCREENREADER_DRIVER_SNOVA_H_
-#define _SCREENREADER_DRIVER_SNOVA_H_
+#ifndef _SCREEN_READER_DRIVER_SNOVA_H_
+#define _SCREEN_READER_DRIVER_SNOVA_H_
 
 #include <windows.h>
 #include "ScreenReaderDriver.h"
@@ -31,4 +31,4 @@ private:
   DolAccess_Command dolAccess_Command;
 };
 
-#endif // _SCREENREADER_DRIVER_SNOVA_H_
+#endif // _SCREEN_READER_DRIVER_SNOVA_H_

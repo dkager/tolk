@@ -6,8 +6,8 @@
  *  License:        LGPLv3
  */
 
-#ifndef _SCREENREADER_DRIVER_H_
-#define _SCREENREADER_DRIVER_H_
+#ifndef _SCREEN_READER_DRIVER_H_
+#define _SCREEN_READER_DRIVER_H_
 
 class ScreenReaderDriver {
 protected:
@@ -28,4 +28,4 @@ private:
   const bool hasBraille;
 };
 
-#endif // _SCREENREADER_DRIVER_H_
+#endif // _SCREEN_READER_DRIVER_H_

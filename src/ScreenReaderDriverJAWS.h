@@ -6,8 +6,8 @@
  *  License:        LGPLv3
  */
 
-#ifndef _SCREENREADER_DRIVER_JAWS_H_
-#define _SCREENREADER_DRIVER_JAWS_H_
+#ifndef _SCREEN_READER_DRIVER_JAWS_H_
+#define _SCREEN_READER_DRIVER_JAWS_H_
 
 #include "fsapi.h"
 #include "ScreenReaderDriver.h"
@@ -28,4 +28,4 @@ private:
   IJawsApi *controller;
 };
 
-#endif // _SCREENREADER_DRIVER_JAWS_H_
+#endif // _SCREEN_READER_DRIVER_JAWS_H_

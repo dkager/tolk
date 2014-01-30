@@ -6,8 +6,8 @@
  *  License:        LGPLv3
  */
 
-#ifndef _SCREENREADER_DRIVER_WE_H_
-#define _SCREENREADER_DRIVER_WE_H_
+#ifndef _SCREEN_READER_DRIVER_WE_H_
+#define _SCREEN_READER_DRIVER_WE_H_
 
 #include "wineyes.h"
 #include "ScreenReaderDriver.h"
@@ -31,4 +31,4 @@ private:
   VARIANT varOpt;
 };
 
-#endif // _SCREENREADER_DRIVER_WE_H_
+#endif // _SCREEN_READER_DRIVER_WE_H_

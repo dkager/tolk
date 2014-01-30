@@ -6,8 +6,8 @@
  *  License:        LGPLv3
  */
 
-#ifndef _SCREENREADER_DRIVER_NVDA_H_
-#define _SCREENREADER_DRIVER_NVDA_H_
+#ifndef _SCREEN_READER_DRIVER_NVDA_H_
+#define _SCREEN_READER_DRIVER_NVDA_H_
 
 #include <windows.h>
 #include "ScreenReaderDriver.h"
@@ -33,4 +33,4 @@ private:
   NVDAController_testIfRunning nvdaController_testIfRunning;
 };
 
-#endif // _SCREENREADER_DRIVER_NVDA_H_
+#endif // _SCREEN_READER_DRIVER_NVDA_H_

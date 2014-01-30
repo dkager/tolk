@@ -6,8 +6,8 @@
  *  License:        LGPLv3
  */
 
-#ifndef _SCREENREADER_DRIVER_SA_H_
-#define _SCREENREADER_DRIVER_SA_H_
+#ifndef _SCREEN_READER_DRIVER_SA_H_
+#define _SCREEN_READER_DRIVER_SA_H_
 
 #include <windows.h>
 #include "ScreenReaderDriver.h"
@@ -33,4 +33,4 @@ private:
   SA_IsRunning sa_IsRunning;
 };
 
-#endif // _SCREENREADER_DRIVER_SA_H_
+#endif // _SCREEN_READER_DRIVER_SA_H_
