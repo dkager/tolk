@@ -24,11 +24,11 @@ bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
   if (IsActive()) {
     const BSTR bstr = SysAllocString(str);
     IVoice *voice;
-    if (!SUCCEEDED(speech->get_CurrentVoice(&voice))) {
+    if (FAILED(speech->get_CurrentVoice(&voice))) {
       Finalize();
       return false;
     }
-    if (interrupt && !SUCCEEDED(voice->put_AllowInterrupt(VARIANT_TRUE))) {
+    if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_TRUE))) {
       voice->Release();
       Finalize();
       return false;
@@ -36,7 +36,7 @@ bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
     const bool succeeded = SUCCEEDED(voice->Speak(bstr));
     voice->Release();
     SysFreeString(bstr);
-    if (interrupt && !SUCCEEDED(voice->put_AllowInterrupt(VARIANT_FALSE))) {
+    if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_FALSE))) {
       Finalize();
       return false;
     }
@@ -48,7 +48,7 @@ bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
 bool ScreenReaderDriverZT::Silence() {
   if (IsActive()) {
     IVoice *voice;
-    if (!SUCCEEDED(speech->get_CurrentVoice(&voice))) {
+    if (FAILED(speech->get_CurrentVoice(&voice))) {
       Finalize();
       return false;
     }
@@ -69,10 +69,10 @@ bool ScreenReaderDriverZT::IsActive() {
 }
 
 void ScreenReaderDriverZT::Initialize() {
-  if (!SUCCEEDED(CoCreateInstance(CLSID_ZoomText, NULL, CLSCTX_LOCAL_SERVER, IID_IZoomText2, (void **)&controller))) {
+  if (FAILED(CoCreateInstance(CLSID_ZoomText, NULL, CLSCTX_LOCAL_SERVER, IID_IZoomText2, (void **)&controller))) {
     return;
   }
-  if (!SUCCEEDED(controller->get_Speech(&speech))) {
+  if (FAILED(controller->get_Speech(&speech))) {
     Finalize();
   }
 }
