@@ -27,6 +27,14 @@ JNIEXPORT void JNICALL Java_com_davykager_tolk_Tolk_unload(JNIEnv *, jclass) {
   Tolk_Unload();
 }
 
+JNIEXPORT void JNICALL Java_com_davykager_tolk_Tolk_trySAPI(JNIEnv *, jclass, jboolean trySAPI) {
+  Tolk_TrySAPI(trySAPI ? true : false);
+}
+
+JNIEXPORT void JNICALL Java_com_davykager_tolk_Tolk_preferSAPI(JNIEnv *, jclass, jboolean preferSAPI) {
+  Tolk_PreferSAPI(preferSAPI ? true : false);
+}
+
 JNIEXPORT jstring JNICALL Java_com_davykager_tolk_Tolk_detectScreenReader(JNIEnv *env, jclass) {
   const wchar_t *str = Tolk_DetectScreenReader();
   if (!str) return NULL;

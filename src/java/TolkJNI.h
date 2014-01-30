@@ -33,6 +33,22 @@ JNIEXPORT void JNICALL Java_com_davykager_tolk_Tolk_unload
 
 /*
  * Class:     com_davykager_tolk_Tolk
+ * Method:    trySAPI
+ * Signature: (Z)V
+ */
+JNIEXPORT void JNICALL Java_com_davykager_tolk_Tolk_trySAPI
+  (JNIEnv *, jclass, jboolean);
+
+/*
+ * Class:     com_davykager_tolk_Tolk
+ * Method:    preferSAPI
+ * Signature: (Z)V
+ */
+JNIEXPORT void JNICALL Java_com_davykager_tolk_Tolk_preferSAPI
+  (JNIEnv *, jclass, jboolean);
+
+/*
+ * Class:     com_davykager_tolk_Tolk
  * Method:    detectScreenReader
  * Signature: ()Ljava/lang/String;
  */
