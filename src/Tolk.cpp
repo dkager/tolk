@@ -71,19 +71,23 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
   g_trySAPI = trySAPI;
-  if (g_trySAPI && !g_sapi) {
-    g_sapi = new ScreenReaderDriverSAPI();
-  }
-  else if (!g_trySAPI && g_sapi) {
-    delete g_sapi;
-    g_sapi = NULL;
+  if (Tolk_IsLoaded()) {
+    if (g_trySAPI && !g_sapi) {
+      g_sapi = new ScreenReaderDriverSAPI();
+    }
+    else if (!g_trySAPI && g_sapi) {
+      delete g_sapi;
+      g_sapi = NULL;
+    }
   }
 }
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI) {
   g_preferSAPI = preferSAPI;
-  g_currentScreenReaderDriver = NULL;
-  Tolk_DetectScreenReader();
+  if (Tolk_IsLoaded()) {
+    g_currentScreenReaderDriver = NULL;
+    Tolk_DetectScreenReader();
+  }
 }
 
 TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
