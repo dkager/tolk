@@ -116,7 +116,7 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Braille(const wchar_t *str);
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Silence();
 
 #ifdef __cplusplus
-}
+} // extern "C"
 #endif // __cplusplus
 
 #endif // _TOLK_H_

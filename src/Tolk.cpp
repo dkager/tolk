@@ -119,5 +119,5 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Silence() {
 }
 
 #ifdef __cplusplus
-}
+} // extern "C"
 #endif // __cplusplus
