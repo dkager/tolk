@@ -17,7 +17,7 @@ public:
   ScreenReaderDriverSAPI();
   ~ScreenReaderDriverSAPI();
   bool Speak(const wchar_t *str, bool interrupt);
-  bool Braille(const wchar_t *str) { return false; }
+  bool Braille(const wchar_t *str) { str; return false; }
   bool Silence();
   bool IsActive() { return (controller != NULL); }
   bool Output(const wchar_t *str, bool interrupt) { return Speak(str, interrupt); }

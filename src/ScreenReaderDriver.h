@@ -12,6 +12,7 @@
 class ScreenReaderDriver {
 protected:
   ScreenReaderDriver(const wchar_t *screenReaderName, bool speech, bool braille);
+  ScreenReaderDriver& operator=(const ScreenReaderDriver&) {}
 public:
   virtual ~ScreenReaderDriver() {}
   virtual bool Speak(const wchar_t *str, bool interrupt) = 0;
