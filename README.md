@@ -7,7 +7,7 @@ Screen Reader Abstraction Library
 Introduction
 ------------
 
-Tolk is an application extension (DLL) that allows Windows applications to output text through screen reader software (assistive technology for the blind and visually impaired).  It is an abstraction layer on top of the vendor-specific APIs that auto-detects the active screen reader, allowing for clean and simple client code.  Speech and braille output are supported in 32-bit and 64-bit environments.  The compatibility table below provides more details.  Microsoft SAPI is **not** supported.
+Tolk is an application extension (DLL) that allows Windows applications to output text through screen reader software (assistive technology for the blind and visually impaired).  It is an abstraction layer on top of the vendor-specific APIs that auto-detects the active screen reader, allowing for clean and simple client code.  Speech and braille output are supported in 32-bit and 64-bit environments.  The compatibility table below provides more details.  In addition to screen readers, Microsoft Speech API (SAPI) is also supported.
 
 Complete archives with source code and pre-compiled binaries are available from [the project page](http://davykager.com/projects/tolk/).  This distribution also includes compiled wrappers for a number of languages:
 
@@ -31,7 +31,7 @@ To use Tolk, import the appropriate version of `Tolk.dll` into your application.
 
 The `lib` directory contains the required screen reader API DLLs.  Tolk expects these DLLs to be found either in the current working directory or somewhere in the PATH.  If a DLL for a certain screen reader is not found, that screen reader will be unavailable.  Note that some screen readers use COM and therefore don't need API DLLs.
 
-Tolk provides functions for (un)initialization, querying, and manipulating the active screen reader.  The key components of Tolk are the screen reader drivers.  They wrap a specific screen reader API into an abstracted interface which is then used by Tolk's auto-detection mechanism.  To keep things simple and secure, the screen reader drivers are not exposed to client code.
+Tolk provides functions for (un)initialization, querying and using the active screen reader, and working with Microsoft SAPI.  The key components of Tolk are the screen reader drivers.  They wrap a specific screen reader API into an abstracted interface which is then used by Tolk's auto-detection mechanism.  SAPI, albeit not a screen reader, also has its own driver.  To keep things simple and secure, these screen reader drivers are not exposed to client code.
 
 Before using Tolk you need to initialize it with `Tolk_Load` and then uninitialize it with `Tolk_Unload` when you're done.  Because some of the screen reader drivers use COM, you have two options:
 
@@ -40,9 +40,13 @@ Before using Tolk you need to initialize it with `Tolk_Load` and then uninitiali
 
 All the functions discussed below can be called without initializing Tolk, but they will return immediately and have no effect.  The functions that output text and silence speech are asynchronous.  That is, they return immediately once the appropriate commands have been queued for processing by the active screen reader.  All other functions are synchronous.
 
-The most important way to send text to the active screen reader once Tolk has been initialized is `Tolk_Output`.  The first parameter to this function is the Unicode string of text, the second parameter indicates whether or not previously queued speech should be interrupted.  In languages that support this feature, the second parameter is optional and defaults to `false`.  The advantage of using `Tolk_Output` is that it tries both speech and braille.  If you need something a little more specialized, use `Tolk_Speak` for speech, `Tolk_Braille` for braille and `Tolk_Silence` to interrupt previously queued speech.  All these functions return `true` on success and `false` otherwise, but because of the auto-detection mechanism it is recommended (and safe) to disregard this return value and simply insert the required calls wherever you need screen reader output.  This keeps your code clean and straight-forward.
+The most important way to send text to the active screen reader once Tolk has been initialized is using `Tolk_Output`.  The first parameter to this function is the Unicode string of text, the second parameter indicates whether or not previously queued speech should be interrupted (or canceled, flushed, etc).  In languages that support this feature, the second parameter is optional and defaults to `false`.  The advantage of using `Tolk_Output` is that it tries both speech and braille.  If you need something more specialized, use `Tolk_Speak` for speech, `Tolk_Braille` for braille and `Tolk_Silence` to interrupt previously queued speech.  All these functions return `true` on success and `false` otherwise, but because of the auto-detection mechanism it is recommended (and safe) to disregard this return value and simply insert the required calls wherever you need screen reader output.  This keeps your code clean and straight-forward.
 
 Tolk provides a number of functions to find out more about the active screen reader driver.  You can get the name of the currently active screen reader through `Tolk_DetectScreenReader`, which returns the common name as Unicode string or `NULL` if none of the supported screen readers is active.  As the name implies, this function tries auto-detection if required.  Internally, Tolk's other functions use this, so it is **not** necessary to call this yourself unless you actually need the common name.  If a screen reader is active, you can use `Tolk_HasSpeech` and `Tolk_HasBraille` to find out if speech and braille are supported by the driver.
+
+Finally, Tolk provides functionality to output text through Microsoft SAPI.  To do this, Tolk has a screen reader driver that uses SAPI 5.3 through COM.  Therefore, the functionality is limited to what screen reader drivers provide.  Applications that need more control should use SAPI directly.  Another consequence is that there is no way to explicitly tell Tolk to use SAPI, the driver is part of the auto-detection chain.
+
+By default, support for SAPI is disabled.  To change this, use `Tolk_TrySAPI`, passing `true` to enable SAPI and `false` to disable it.  The required driver will automatically be (un)loaded depending on the argument you passed.  SAPI is initially put at the end of the auto-detection chain.  This is good for using it as a fallback option when none of the supported screen readers is running.  It is also possible to have Tolk prefer SAPI over the other screen reader drivers.  This is good for basic SAPI output where screen readers are only tried if SAPI fails or if SAPI 5.3 or later is unavailable.  To change the preference for SAPI, use `Tolk_PreferSAPI`.  This also takes a boolean parameter, `true` to prefer SAPI or `false` to prefer the traditional screen readers.
 
 All of the above is fully documented in `Tolk.h`, which also includes function prototypes for C/C++.  The included wrappers will provide entry points into these functions that use the language native types where supported.  The function names have also been adapted to meet the specific conventions for these languages, see the examples for a demonstration.
 
@@ -57,6 +61,7 @@ Screen Readers
     SuperNova        Yes      No        Yes   No
     System Access    Yes      Yes       Yes   Yes
     ZoomText         Yes      No        Yes   Yes
+    SAPI             Yes      No        Yes   Yes
 
 
 Notes
@@ -69,7 +74,6 @@ Notes
 *   ZoomText by Ai Squared requires a registry patch before it can be used, run either `ZTFix32.reg` (32-bit) or `ZTFix64.reg` (64-bit) from the `scripts` directory.
 *   Tolk does not support the COBRA screen reader by BAUM Retec AG, because its lack of support for modern technologies makes it a counter-productive solution.
 *   Some screen readers (notably the super awesome Window-Eyes by GW Micro) support many more functions, but there are no plans to implement any of these.
-*   There are no plans to add support for Microsoft SAPI, as it is not a screen reader.
 
 
 Compiling
