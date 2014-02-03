@@ -6,6 +6,8 @@
  *  License:        LGPLv3
  */
 
+#ifdef _WITH_JNI
+
 #include <windows.h>
 #include <jni_md.h> // Platform-specific defines, include first
 #include "TolkJNI.h" // Auto-generated using ..\..\build_jni.bat
@@ -77,3 +79,5 @@ JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_silence(JNIEnv *, jclass
 #ifdef __cplusplus
 }
 #endif // __cplusplus
+
+#endif // _WITH_JNI
