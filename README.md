@@ -15,6 +15,7 @@ Complete archives with source code and pre-compiled binaries are available from 
 *   Microsoft .NET
 *   Python
 *   PureBasic
+*   REAPER (ReaScript, etc)
 
 
 License
