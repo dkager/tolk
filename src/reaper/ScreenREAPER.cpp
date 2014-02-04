@@ -12,12 +12,16 @@
 #include <windows.h>
 #include "reaper_plugin.h"
 
+HWND g_hwnd = NULL;
 int g_actionCurrentScreenReaderId = 0;
 
 void Tolk_OutputCurrentScreenReader() {
   const wchar_t *name = Tolk_DetectScreenReader();
   if (name) {
     Tolk_Output(name, true);
+  }
+  else {
+    MessageBox(g_hwnd, L"No active screen reader was found.", L"Information", MB_ICONINFORMATION | MB_OK);
   }
 }
 
@@ -86,6 +90,7 @@ TOLK_DLL_DECLSPEC int TOLK_CALL REAPER_PLUGIN_ENTRYPOINT(REAPER_PLUGIN_HINSTANCE
     actionCurrentScreenReader.desc = "[developer] Tolk: Make the active screen reader output its name";
     if (!rec->Register("gaccel", &actionCurrentScreenReader)) return 0;
     if (!rec->Register("hookcommand", &Tolk_CommandFilter)) return 0;
+    g_hwnd = rec->hwnd_main;
     return 1;
   }
   else { // (!rec)
