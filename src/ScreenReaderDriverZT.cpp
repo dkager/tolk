@@ -45,6 +45,21 @@ bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
   return false;
 }
 
+bool ScreenReaderDriverZT::IsSpeaking() {
+  if (IsActive()) {
+    IVoice *voice;
+    if (FAILED(speech->get_CurrentVoice(&voice))) {
+      Finalize();
+      return false;
+    }
+    VARIANT_BOOL result = VARIANT_FALSE;
+    const bool succeeded = SUCCEEDED(voice->get_Speaking(&result));
+    voice->Release();
+    return (succeeded && result == VARIANT_TRUE);
+  }
+  return false;
+}
+
 bool ScreenReaderDriverZT::Silence() {
   if (IsActive()) {
     IVoice *voice;
