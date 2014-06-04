@@ -18,6 +18,7 @@ public:
   ~ScreenReaderDriverWE();
   bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *str);
+  bool IsSpeaking() { return false; }
   bool Silence();
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt);

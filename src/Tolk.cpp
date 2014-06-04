@@ -151,6 +151,13 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Braille(const wchar_t *str) {
   return false;
 }
 
+TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsSpeaking() {
+  if (Tolk_DetectScreenReader()) {
+    return g_currentScreenReaderDriver->IsSpeaking();
+  }
+  return false;
+}
+
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Silence() {
   if (Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Silence();

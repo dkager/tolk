@@ -124,6 +124,14 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Speak(const wchar_t *str, bool interrupt);
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Braille(const wchar_t *str);
 
 /**
+ *  Name:         Tolk_IsSpeaking
+ *  Description:  Tests if the screen reader associated with the current screen reader driver is speaking, if one is set and supports querying for status information.  If none is set, tries to detect the currently active screen reader before testing if it is speaking.  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.
+ *  Parameters:   None.
+ *  Returns:      true if text is being spoken by the screen reader, false otherwise.
+ */
+TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsSpeaking();
+
+/**
  *  Name:         Tolk_Silence
  *  Description:  Silences the current screen reader's speech, if the current screen reader driver is set and supports speech output.  If none is set or if it encountered an error, tries to detect the currently active screen reader before silencing speech.  Silencing speech only clears any queued text, it does not permanently disable speech (i.e. any future calls to Tolk_Output or Tolk_Speak will still work).  You should call Tolk_Load once before using this function, though for convenience it can be called at any time.
  *  Parameters:   None.

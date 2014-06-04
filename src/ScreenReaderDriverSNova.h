@@ -18,6 +18,7 @@ public:
   ~ScreenReaderDriverSNova();
   bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *str) { str; return false; }
+  bool IsSpeaking() { return false; }
   bool Silence();
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt) { return Speak(str, interrupt); }

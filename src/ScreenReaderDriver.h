@@ -17,6 +17,7 @@ public:
   virtual ~ScreenReaderDriver() {}
   virtual bool Speak(const wchar_t *str, bool interrupt) = 0;
   virtual bool Braille(const wchar_t *str) = 0;
+  virtual bool IsSpeaking() = 0;
   virtual bool Silence() = 0;
   virtual bool IsActive() = 0;
   virtual bool Output(const wchar_t *str, bool interrupt) = 0;
