@@ -18,6 +18,7 @@ DeclareModule Tolk
   Declare.a Output(str.s, interrupt.a = #False)
   Declare.a Speak(str.s, interrupt.a = #False)
   Declare.a Braille(str.s)
+  Declare.a IsSpeaking()
   Declare.a Silence()
 EndDeclareModule
 
@@ -34,6 +35,7 @@ Module Tolk
     Tolk_Output.a(str.p-unicode, interrupt.a = #False)
     Tolk_Speak.a(str.p-unicode, interrupt.a = #False)
     Tolk_Braille.a(str.p-unicode)
+    Tolk_IsSpeaking.a()
     Tolk_Silence.a()
   EndImport
 
@@ -80,6 +82,10 @@ Module Tolk
 
   Procedure.a Braille(str.s)
     ProcedureReturn Tolk_Braille(str)
+  EndProcedure
+
+  Procedure.a IsSpeaking()
+    ProcedureReturn Tolk_IsSpeaking()
   EndProcedure
 
   Procedure.a Silence()
