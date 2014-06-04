@@ -23,6 +23,7 @@ namespace DavyKager {
     [DllImport("Tolk.dll")] private static extern bool Tolk_Output(IntPtr ptr, bool interrupt);
     [DllImport("Tolk.dll")] private static extern bool Tolk_Speak(IntPtr ptr, bool interrupt);
     [DllImport("Tolk.dll")] private static extern bool Tolk_Braille(IntPtr ptr);
+    [DllImport("Tolk.dll")] private static extern bool Tolk_IsSpeaking();
     [DllImport("Tolk.dll")] private static extern bool Tolk_Silence();
 
     // Prevent construction
@@ -35,6 +36,7 @@ namespace DavyKager {
     public static void PreferSAPI(bool preferSAPI) { Tolk_PreferSAPI(preferSAPI); }
     public static bool HasSpeech() { return Tolk_HasSpeech(); }
     public static bool HasBraille() { return Tolk_HasBraille(); }
+    public static bool IsSpeaking() { return Tolk_IsSpeaking(); }
     public static bool Silence() { return Tolk_Silence(); }
 
     public static string DetectScreenReader() {
