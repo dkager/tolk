@@ -43,7 +43,7 @@ All the functions discussed below can be called without initializing Tolk, but t
 
 The most important way to send text to the active screen reader once Tolk has been initialized is using `Tolk_Output`.  The first parameter to this function is the Unicode string of text, the second parameter indicates whether or not previously queued speech should be interrupted (or canceled, flushed, etc).  In languages that support this feature, the second parameter is optional and defaults to `false`.  The advantage of using `Tolk_Output` is that it tries both speech and braille.  If you need something more specialized, use `Tolk_Speak` for speech, `Tolk_Braille` for braille and `Tolk_Silence` to interrupt previously queued speech.  All these functions return `true` on success and `false` otherwise, but because of the auto-detection mechanism it is recommended (and safe) to disregard this return value and simply insert the required calls wherever you need screen reader output.  This keeps your code clean and straight-forward.
 
-Tolk provides a number of functions to find out more about the active screen reader driver.  You can get the name of the currently active screen reader through `Tolk_DetectScreenReader`, which returns the common name as Unicode string or `NULL` if none of the supported screen readers is active.  As the name implies, this function tries auto-detection if required.  Internally, Tolk's other functions use this, so it is **not** necessary to call this yourself unless you actually need the common name.  If a screen reader is active, you can use `Tolk_HasSpeech` and `Tolk_HasBraille` to find out if speech and braille are supported by the driver.
+Tolk provides a number of functions to find out more about the active screen reader driver.  You can get the name of the currently active screen reader through `Tolk_DetectScreenReader`, which returns the common name as Unicode string or `NULL` if none of the supported screen readers is active.  As the name implies, this function tries auto-detection if required.  Internally, Tolk's other functions use this, so it is **not** necessary to call this yourself unless you actually need the common name.  If a screen reader is active, you can use `Tolk_HasSpeech` and `Tolk_HasBraille` to find out if the driver supports speech and braille respectively.  For synchronization, `Tolk_IsSpeaking` returns whether or not the active screen reader is speaking text at the time of the call, assuming the driver supports this status query.  Note that not many drivers implement this functionality because of limitations in screen reader APIs.  See the `Status` column of the `Screen Readers` table below for details.
 
 Finally, Tolk provides functionality to output text through Microsoft SAPI.  To do this, Tolk has a screen reader driver that uses SAPI 5.3 through COM.  Therefore, the functionality is limited to what screen reader drivers provide.  Applications that need more control should use SAPI directly.  Another consequence is that there is no way to explicitly tell Tolk to use SAPI, the driver is part of the auto-detection chain.
 
@@ -55,14 +55,14 @@ All of the above is fully documented in `Tolk.h`, which also includes function p
 Screen Readers
 --------------
 
-    Screen Reader    Speech   Braille   x86   x64
-    JAWS             Yes      Yes       Yes   Yes
-    Window-Eyes      Yes      Yes       Yes   Yes
-    NVDA             Yes      Yes       Yes   Yes
-    SuperNova        Yes      No        Yes   No
-    System Access    Yes      Yes       Yes   Yes
-    ZoomText         Yes      No        Yes   Yes
-    SAPI             Yes      No        Yes   Yes
+    Screen Reader   Speech   Braille   Status   x86   x64
+    JAWS            Yes      Yes       No       Yes   Yes
+    Window-Eyes     Yes      Yes       No       Yes   Yes
+    NVDA            Yes      Yes       No       Yes   Yes
+    SuperNova       Yes      No        No       Yes   No
+    System Access   Yes      Yes       No       Yes   Yes
+    ZoomText        Yes      No        Yes      Yes   Yes
+    SAPI            Yes      No        Yes      Yes   Yes
 
 
 Notes
