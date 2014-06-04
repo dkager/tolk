@@ -97,6 +97,14 @@ JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_braille
 
 /*
  * Class:     com_davykager_tolk_Tolk
+ * Method:    isSpeaking
+ * Signature: ()Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_isSpeaking
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_davykager_tolk_Tolk
  * Method:    silence
  * Signature: ()Z
  */

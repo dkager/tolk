@@ -20,6 +20,7 @@ public final class Tolk {
   public static native boolean output(String str, boolean interrupt);
   public static native boolean speak(String str, boolean interrupt);
   public static native boolean braille(String str);
+  public static native boolean isSpeaking();
   public static native boolean silence();
 
   // Prevent construction
