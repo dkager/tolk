@@ -75,6 +75,10 @@ TOLK_DLL_DECLSPEC int TOLK_CALL REAPER_PLUGIN_ENTRYPOINT(REAPER_PLUGIN_HINSTANCE
       || !rec->Register("APIdef_Tolk_Braille",
         "bool\0const wchar_t *\0str\0"
         "Tolk: Output (braille) str to the active screen reader. Not all screen readers support this.")
+      || !rec->Register("API_Tolk_IsSpeaking", &Tolk_IsSpeaking)
+      || !rec->Register("APIdef_Tolk_IsSpeaking",
+        "bool\0\0\0"
+        "Tolk: Return if the active screen reader is speaking.")
       || !rec->Register("API_Tolk_Silence", &Tolk_Silence)
       || !rec->Register("APIdef_Tolk_Silence",
         "bool\0\0\0"
