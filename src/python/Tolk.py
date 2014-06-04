@@ -48,5 +48,8 @@ _proto_braille = CFUNCTYPE(c_bool, c_wchar_p)
 _param_braille = (1, "str"),
 braille = _proto_braille(("Tolk_Braille", _tolk), _param_braille)
 
+_proto_is_speaking = CFUNCTYPE(c_bool)
+is_speaking = _proto_is_speaking(("Tolk_IsSpeaking", _tolk))
+
 _proto_silence = CFUNCTYPE(c_bool)
 silence = _proto_silence(("Tolk_Silence", _tolk))
