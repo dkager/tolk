@@ -73,7 +73,7 @@ JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_braille(JNIEnv *env, jcl
 }
 
 JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_isSpeaking(JNIEnv *, jclass) {
-  return Tolk_isSpeaking();
+  return Tolk_IsSpeaking();
 }
 
 JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_silence(JNIEnv *, jclass) {
