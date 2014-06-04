@@ -30,6 +30,17 @@ bool ScreenReaderDriverSAPI::Speak(const wchar_t *str, bool interrupt) {
   return false;
 }
 
+bool ScreenReaderDriverSAPI::IsSpeaking() {
+  if (IsActive()) {
+    SPVOICESTATUS status;
+    if (FAILED(controller->GetStatus(&status, NULL))) {
+      return false;
+    }
+    return status.dwRunningState == SPRS_IS_SPEAKING;
+  }
+  return false;
+}
+
 bool ScreenReaderDriverSAPI::Silence() {
   if (IsActive()) {
     const DWORD flags = SPF_ASYNC | SPF_PURGEBEFORESPEAK | SPF_IS_NOT_XML;
