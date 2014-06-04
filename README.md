@@ -88,8 +88,8 @@ Should you want to compile Tolk yourself, here's what you need to build the whol
 *   Microsoft .NET Framework
 *   Python 3.x
 *   PureBasic
-*   GnuWin32 zip or other compatible program
 *   Pandoc
+*   GnuWin32 zip or other compatible program
 
 The root directory and `examples` directories provide various batch-scripts as a starting point.  They assume the required tools are in your PATH.  For the examples you will also need to copy over any dependency files.  Of course, you can also create one or more projects to wrap Tolk in your favorite IDE.  Any IDE that supports the MSVC++ toolchain should work.
 
