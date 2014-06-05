@@ -76,6 +76,7 @@ Notes
 *   ZoomText by Ai Squared requires a registry patch before it can be used, run either `ZTFix32.reg` (32-bit) or `ZTFix64.reg` (64-bit) from the `scripts` directory.
 *   Tolk does not support the COBRA screen reader by BAUM Retec AG, because its lack of support for modern technologies makes it a counter-productive solution.
 *   Some screen readers (notably Window-Eyes and ZoomText by Ai Squared) support many more functions, but there are no plans to implement any of these.
+*   The driver for Microsoft SAPI explicitly disables XML handling because there is no way to be sure SAPI is being used and other drivers don't support it.
 
 
 Compiling
