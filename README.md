@@ -12,9 +12,10 @@ Tolk is an application extension (DLL) that allows Windows applications to outpu
 Complete archives with source code and pre-compiled binaries are available from [the project page](http://davykager.com/projects/tolk/).  This distribution also includes compiled wrappers for a number of languages:
 
 *   Java
-*   Microsoft .NET
+*   Microsoft .NET (C# and VB)
 *   Python
 *   PureBasic
+*   AutoIt
 *   REAPER (ReaScript, etc)
 
 
