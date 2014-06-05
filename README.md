@@ -7,7 +7,7 @@ Screen Reader Abstraction Library
 Introduction
 ------------
 
-Tolk is an application extension (DLL) that allows Windows applications to output text through screen reader software (assistive technology for the blind and visually impaired).  It is an abstraction layer on top of the vendor-specific APIs that auto-detects the active screen reader, allowing for clean and simple client code.  Speech and braille output are supported in 32-bit and 64-bit environments.  The compatibility table below provides more details.  In addition to screen readers, Microsoft Speech API (SAPI) is also supported.
+Tolk is an application extension (DLL) that allows Windows applications to output text through screen reader software (assistive technology for the blind and visually impaired).  It is an abstraction layer on top of the vendor-specific APIs that auto-detects the active screen reader, allowing for clean and simple client code.  Speech and braille output are supported in 32-bit and 64-bit environments.  The `Screen Readers` table below provides more details.  In addition to screen readers, Microsoft Speech API (SAPI) is also supported.
 
 Complete archives with source code and pre-compiled binaries are available from [the project page](http://davykager.com/projects/tolk/).  This distribution also includes compiled wrappers for a number of languages:
 
@@ -74,7 +74,7 @@ Notes
 *   Dolphin SuperNova can speak even if the user turned the voice off, but in that state interrupts will not work.
 *   ZoomText by Ai Squared requires a registry patch before it can be used, run either `ZTFix32.reg` (32-bit) or `ZTFix64.reg` (64-bit) from the `scripts` directory.
 *   Tolk does not support the COBRA screen reader by BAUM Retec AG, because its lack of support for modern technologies makes it a counter-productive solution.
-*   Some screen readers (notably the super awesome Window-Eyes by GW Micro) support many more functions, but there are no plans to implement any of these.
+*   Some screen readers (notably Window-Eyes and ZoomText by Ai Squared) support many more functions, but there are no plans to implement any of these.
 
 
 Compiling
