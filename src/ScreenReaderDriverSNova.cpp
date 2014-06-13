@@ -50,16 +50,14 @@ ScreenReaderDriverSNova::~ScreenReaderDriverSNova() {
 
 bool ScreenReaderDriverSNova::Speak(const wchar_t* str, bool interrupt) {
   if (interrupt && !Silence()) return false;
-  if (dolAccess_Command && IsActive()) {
+  if (dolAccess_Command && IsActive())
     return (dolAccess_Command(str, (int)(wcslen(str) + 1) * sizeof(wchar_t), DOLAPI_COMMAND_SPEAK) == DOLACCESS_SUCCESS);
-  }
   return false;
 }
 
 bool ScreenReaderDriverSNova::Silence() {
-  if (dolAccess_Action && IsActive()) {
+  if (dolAccess_Action && IsActive())
     return (dolAccess_Action(CMD_mute_) == DOLACCESS_SUCCESS);
-  }
   return false;
 }
 

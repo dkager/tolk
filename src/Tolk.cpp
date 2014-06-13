@@ -113,51 +113,44 @@ TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_HasSpeech() {
-  if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader())
     return g_currentScreenReaderDriver->HasSpeech();
-  }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_HasBraille() {
-  if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader())
     return g_currentScreenReaderDriver->HasBraille();
-  }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Output(const wchar_t *str, bool interrupt) {
-  if (str && Tolk_DetectScreenReader()) {
+  if (str && Tolk_DetectScreenReader())
     return g_currentScreenReaderDriver->Output(str, interrupt);
-  }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Speak(const wchar_t *str, bool interrupt) {
-  if (str && Tolk_DetectScreenReader()) {
+  if (str && Tolk_DetectScreenReader())
     return g_currentScreenReaderDriver->Speak(str, interrupt);
-  }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Braille(const wchar_t *str) {
-  if (str && Tolk_DetectScreenReader()) {
+  if (str && Tolk_DetectScreenReader())
     return g_currentScreenReaderDriver->Braille(str);
-  }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsSpeaking() {
-  if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader())
     return g_currentScreenReaderDriver->IsSpeaking();
-  }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Silence() {
-  if (Tolk_DetectScreenReader()) {
+  if (Tolk_DetectScreenReader())
     return g_currentScreenReaderDriver->Silence();
-  }
   return false;
 }
 
