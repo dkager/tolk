@@ -74,11 +74,11 @@ bool ScreenReaderDriverWE::Output(const wchar_t *str, bool interrupt) {
 void ScreenReaderDriverWE::Initialize() {
   if (FAILED(CoCreateInstance(CLSID_Application, NULL, CLSCTX_INPROC_SERVER, IID__Application, (void **)&controller)))
     return;
-  if (FAILED(controller->get_Speech(&speech))) {
+  if (FAILED(controller->get_Speech(&speech)) ||
+        FAILED(controller->get_Braille(&braille))) {
     Finalize();
     return;
   }
-  if (FAILED(controller->get_Braille(&braille))) Finalize();
 }
 
 void ScreenReaderDriverWE::Finalize() {

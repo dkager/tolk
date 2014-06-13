@@ -32,8 +32,7 @@ extern "C" {
 #endif // __cplusplus
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
-  const HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
-  if (hr == S_FALSE) CoUninitialize();
+  if (CoInitializeEx(NULL, COINIT_MULTITHREADED) == S_FALSE) CoUninitialize();
   if (Tolk_IsLoaded()) return;
   g_screenReaderDrivers = new array<ScreenReaderDriver *, NSCREENREADERDRIVERS>();
   (*g_screenReaderDrivers)[0] = new ScreenReaderDriverJAWS();
