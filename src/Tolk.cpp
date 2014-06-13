@@ -34,19 +34,18 @@ extern "C" {
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   const HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
   if (hr == S_FALSE) CoUninitialize();
-  if (!Tolk_IsLoaded()) {
-    g_screenReaderDrivers = new array<ScreenReaderDriver *, NSCREENREADERDRIVERS>();
-    (*g_screenReaderDrivers)[0] = new ScreenReaderDriverJAWS();
-    (*g_screenReaderDrivers)[1] = new ScreenReaderDriverWE();
-    (*g_screenReaderDrivers)[2] = new ScreenReaderDriverNVDA();
-    (*g_screenReaderDrivers)[3] = new ScreenReaderDriverSNova();
-    (*g_screenReaderDrivers)[4] = new ScreenReaderDriverSA();
-    (*g_screenReaderDrivers)[5] = new ScreenReaderDriverZT();
-    if (g_trySAPI) {
-      g_sapi = new ScreenReaderDriverSAPI();
-    }
-    Tolk_DetectScreenReader();
+  if (Tolk_IsLoaded()) return;
+  g_screenReaderDrivers = new array<ScreenReaderDriver *, NSCREENREADERDRIVERS>();
+  (*g_screenReaderDrivers)[0] = new ScreenReaderDriverJAWS();
+  (*g_screenReaderDrivers)[1] = new ScreenReaderDriverWE();
+  (*g_screenReaderDrivers)[2] = new ScreenReaderDriverNVDA();
+  (*g_screenReaderDrivers)[3] = new ScreenReaderDriverSNova();
+  (*g_screenReaderDrivers)[4] = new ScreenReaderDriverSA();
+  (*g_screenReaderDrivers)[5] = new ScreenReaderDriverZT();
+  if (g_trySAPI) {
+    g_sapi = new ScreenReaderDriverSAPI();
   }
+  Tolk_DetectScreenReader();
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsLoaded() {
@@ -128,24 +127,21 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_HasBraille() {
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Output(const wchar_t *str, bool interrupt) {
-  if (!str) return false;
-  if (Tolk_DetectScreenReader()) {
+  if (str && Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Output(str, interrupt);
   }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Speak(const wchar_t *str, bool interrupt) {
-  if (!str) return false;
-  if (Tolk_DetectScreenReader()) {
+  if (str && Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Speak(str, interrupt);
   }
   return false;
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Braille(const wchar_t *str) {
-  if (!str) return false;
-  if (Tolk_DetectScreenReader()) {
+  if (str && Tolk_DetectScreenReader()) {
     return g_currentScreenReaderDriver->Braille(str);
   }
   return false;
