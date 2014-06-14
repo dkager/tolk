@@ -17,12 +17,8 @@ int g_actionCurrentScreenReaderId = 0;
 
 void Tolk_OutputCurrentScreenReader() {
   const wchar_t *name = Tolk_DetectScreenReader();
-  if (name) {
-    Tolk_Output(name, true);
-  }
-  else {
-    MessageBox(g_hwnd, L"No active screen reader was found.", L"Information", MB_ICONINFORMATION | MB_OK);
-  }
+  if (name) Tolk_Output(name, true);
+  else MessageBox(g_hwnd, L"No active screen reader was found.", L"Information", MB_ICONINFORMATION | MB_OK);
 }
 
 bool Tolk_CommandFilter(int commandId, int flag) {
