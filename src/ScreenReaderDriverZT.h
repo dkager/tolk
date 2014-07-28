@@ -17,7 +17,7 @@ public:
   ScreenReaderDriverZT();
   ~ScreenReaderDriverZT();
   bool Speak(const wchar_t *str, bool interrupt);
-  bool Braille(const wchar_t *str) { str; return false; }
+  bool Braille(const wchar_t *) { return false; }
   bool IsSpeaking();
   bool Silence();
   bool IsActive();
