@@ -25,7 +25,7 @@ public:
 private:
   typedef DWORD (__stdcall *DolAccess_GetSystem)();
   typedef DWORD (__stdcall *DolAccess_Action)(int);
-  typedef DWORD (__stdcall *DolAccess_Command)(const wchar_t*, int, int);
+  typedef DWORD (__stdcall *DolAccess_Command)(const wchar_t *, int, int);
   HINSTANCE controller;
   DolAccess_GetSystem dolAccess_GetSystem;
   DolAccess_Action dolAccess_Action;

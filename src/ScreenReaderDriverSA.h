@@ -23,8 +23,8 @@ public:
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt);
 private:
-  typedef bool (__stdcall *SA_SayW)(const wchar_t*);
-  typedef bool (__stdcall *SA_BrlShowTextW)(const wchar_t*);
+  typedef bool (__stdcall *SA_SayW)(const wchar_t *);
+  typedef bool (__stdcall *SA_BrlShowTextW)(const wchar_t *);
   typedef bool (__stdcall *SA_StopAudio)();
   typedef bool (__stdcall *SA_IsRunning)();
   HINSTANCE controller;
