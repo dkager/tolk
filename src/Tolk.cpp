@@ -19,8 +19,6 @@
 
 using namespace std;
 
-#define NSCREENREADERDRIVERS 6
-
 array<ScreenReaderDriver *, NSCREENREADERDRIVERS> *g_screenReaderDrivers = NULL;
 ScreenReaderDriverSAPI *g_sapi = NULL;
 ScreenReaderDriver *g_currentScreenReaderDriver = NULL;

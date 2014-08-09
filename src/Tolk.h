@@ -9,6 +9,8 @@
 #ifndef _TOLK_H_
 #define _TOLK_H_
 
+#define NSCREENREADERDRIVERS 6
+
 #ifdef _EXPORTING
 #define TOLK_DLL_DECLSPEC __declspec(dllexport)
 #else
