@@ -80,7 +80,7 @@ bool ScreenReaderDriverZT::IsActive() {
     return false;
   }
   if (!controller) Initialize();
-  return (controller != NULL); 
+  return (!!controller); 
 }
 
 void ScreenReaderDriverZT::Initialize() {
@@ -101,5 +101,5 @@ void ScreenReaderDriverZT::Finalize() {
 }
 
 bool ScreenReaderDriverZT::IsRunning() {
-  return (FindWindow(L"ZXSPEECHWNDCLASS", L"ZoomText Speech Processor") != NULL);
+  return (!!FindWindow(L"ZXSPEECHWNDCLASS", L"ZoomText Speech Processor"));
 }

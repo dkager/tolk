@@ -20,7 +20,7 @@ public:
   bool Braille(const wchar_t *) { return false; }
   bool IsSpeaking();
   bool Silence();
-  bool IsActive() { return (controller != NULL); }
+  bool IsActive() { return (!!controller); }
   bool Output(const wchar_t *str, bool interrupt) { return Speak(str, interrupt); }
 private:
   void Initialize();

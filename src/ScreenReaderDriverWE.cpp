@@ -55,7 +55,7 @@ bool ScreenReaderDriverWE::IsActive() {
     return false;
   }
   if (!controller) Initialize();
-  return (controller != NULL);
+  return (!!controller);
 }
 
 bool ScreenReaderDriverWE::Output(const wchar_t *str, bool interrupt) {
@@ -97,5 +97,5 @@ void ScreenReaderDriverWE::Finalize() {
 }
 
 bool ScreenReaderDriverWE::IsRunning() {
-  return (FindWindow(L"GWMExternalControl", L"External Control") != NULL);
+  return (!!FindWindow(L"GWMExternalControl", L"External Control"));
 }

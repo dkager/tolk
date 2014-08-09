@@ -64,7 +64,7 @@ bool ScreenReaderDriverJAWS::IsActive() {
     return false;
   }
   if (!controller) Initialize();
-  return (controller != NULL);
+  return (!!controller);
 }
 
 bool ScreenReaderDriverJAWS::Output(const wchar_t *str, bool interrupt) {
@@ -89,5 +89,5 @@ void ScreenReaderDriverJAWS::Finalize() {
 }
 
 bool ScreenReaderDriverJAWS::IsRunning() {
-  return (FindWindow(L"JFWUI2", L"JAWS") != NULL);
+  return (!!FindWindow(L"JFWUI2", L"JAWS"));
 }

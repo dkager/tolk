@@ -48,7 +48,7 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsLoaded() {
-  return (g_screenReaderDrivers != NULL);
+  return (!!g_screenReaderDrivers);
 }
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {

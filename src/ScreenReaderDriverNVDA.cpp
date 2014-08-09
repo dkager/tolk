@@ -53,7 +53,7 @@ bool ScreenReaderDriverNVDA::Silence() {
 
 bool ScreenReaderDriverNVDA::IsActive() {
   // This needs an extra check because System Access pretends to be NVDA
-  if (nvdaController_testIfRunning) return  (FindWindow(L"wxWindowClassNR", L"NVDA") != NULL && nvdaController_testIfRunning() == 0);
+  if (nvdaController_testIfRunning) return  (!!FindWindow(L"wxWindowClassNR", L"NVDA") && nvdaController_testIfRunning() == 0);
   return false;
 }
 
