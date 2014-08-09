@@ -61,7 +61,7 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
     for (int i = NSCREENREADERDRIVERS - 1; i >= 0; --i) {
       delete (*g_screenReaderDrivers)[i];
     }
-    delete g_screenReaderDrivers;
+    delete[] g_screenReaderDrivers;
     g_screenReaderDrivers = NULL;
   }
   CoUninitialize();
