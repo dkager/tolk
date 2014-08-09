@@ -66,6 +66,7 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
 }
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
+  if (g_trySAPI == trySAPI) return;
   g_trySAPI = trySAPI;
   if (Tolk_IsLoaded()) {
     if (g_trySAPI && !g_sapi) {
@@ -81,6 +82,7 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
 }
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI) {
+  if (g_preferSAPI == preferSAPI) return;
   g_preferSAPI = preferSAPI;
   if (Tolk_IsLoaded()) {
     g_currentScreenReaderDriver = NULL;
