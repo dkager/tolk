@@ -75,6 +75,8 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
       delete g_sapi;
       g_sapi = NULL;
     }
+    g_currentScreenReaderDriver = NULL;
+    Tolk_DetectScreenReader();
   }
 }
 
