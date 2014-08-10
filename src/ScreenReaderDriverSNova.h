@@ -16,16 +16,21 @@ class ScreenReaderDriverSNova : public ScreenReaderDriver {
 public:
   ScreenReaderDriverSNova();
   ~ScreenReaderDriverSNova();
+
+public:
   bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *) { return false; }
   bool IsSpeaking() { return false; }
   bool Silence();
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt) { return Speak(str, interrupt); }
+
 private:
   typedef DWORD (__stdcall *DolAccess_GetSystem)();
   typedef DWORD (__stdcall *DolAccess_Action)(int);
   typedef DWORD (__stdcall *DolAccess_Command)(const wchar_t *, int, int);
+
+private:
   HINSTANCE controller;
   DolAccess_GetSystem dolAccess_GetSystem;
   DolAccess_Action dolAccess_Action;

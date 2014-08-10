@@ -16,16 +16,21 @@ class ScreenReaderDriverJAWS : public ScreenReaderDriver {
 public:
   ScreenReaderDriverJAWS();
   ~ScreenReaderDriverJAWS();
+
+public:
   bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *str);
   bool IsSpeaking() { return false; }
   bool Silence();
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt);
+
 private:
   void Initialize();
   void Finalize();
   bool IsRunning();
+
+private:
   IJawsApi *controller;
 };
 

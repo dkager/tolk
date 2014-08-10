@@ -16,17 +16,22 @@ class ScreenReaderDriverSA : public ScreenReaderDriver {
 public:
   ScreenReaderDriverSA();
   ~ScreenReaderDriverSA();
+
+public:
   bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *str);
   bool IsSpeaking() { return false; }
   bool Silence();
   bool IsActive();
   bool Output(const wchar_t *str, bool interrupt);
+
 private:
   typedef bool (__stdcall *SA_SayW)(const wchar_t *);
   typedef bool (__stdcall *SA_BrlShowTextW)(const wchar_t *);
   typedef bool (__stdcall *SA_StopAudio)();
   typedef bool (__stdcall *SA_IsRunning)();
+
+private:
   HINSTANCE controller;
   SA_SayW sa_SayW;
   SA_BrlShowTextW sa_BrlShowTextW;

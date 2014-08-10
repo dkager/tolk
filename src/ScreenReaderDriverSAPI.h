@@ -16,15 +16,20 @@ class ScreenReaderDriverSAPI : public ScreenReaderDriver {
 public:
   ScreenReaderDriverSAPI();
   ~ScreenReaderDriverSAPI();
+
+public:
   bool Speak(const wchar_t *str, bool interrupt);
   bool Braille(const wchar_t *) { return false; }
   bool IsSpeaking();
   bool Silence();
   bool IsActive() { return (!!controller); }
   bool Output(const wchar_t *str, bool interrupt) { return Speak(str, interrupt); }
+
 private:
   void Initialize();
   void Finalize();
+
+private:
   ISpVoice *controller;
 };
 
