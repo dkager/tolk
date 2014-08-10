@@ -23,39 +23,32 @@ ScreenReaderDriverJAWS::~ScreenReaderDriverJAWS() {
 }
 
 bool ScreenReaderDriverJAWS::Speak(const wchar_t *str, bool interrupt) {
-  if (IsActive()) {
-    const BSTR bstr = SysAllocString(str);
-    VARIANT_BOOL result = VARIANT_FALSE;
-    const VARIANT_BOOL flush = interrupt ? VARIANT_TRUE : VARIANT_FALSE;
-    const bool succeeded = SUCCEEDED(controller->SayString(bstr, flush, &result));
-    SysFreeString(bstr);
-    return (succeeded && result == VARIANT_TRUE);
-  }
-  return false;
+  const BSTR bstr = SysAllocString(str);
+  VARIANT_BOOL result = VARIANT_FALSE;
+  const VARIANT_BOOL flush = interrupt ? VARIANT_TRUE : VARIANT_FALSE;
+  const bool succeeded = SUCCEEDED(controller->SayString(bstr, flush, &result));
+  SysFreeString(bstr);
+  return (succeeded && result == VARIANT_TRUE);
 }
 
 bool ScreenReaderDriverJAWS::Braille(const wchar_t *str) {
-  if (IsActive()) {
-    std::wstring wstr(str);
-    std::wstring::size_type i = wstr.find_first_of(L"\"");
-    while (i != std::wstring::npos) {
-      wstr[i] = L'\'';
-      i = wstr.find_first_of(L"\"", i + 1);
-    }
-    wstr.insert(0, L"BrailleString(\"");
-    wstr.append(L"\")");
-    const BSTR bstr = SysAllocString(wstr.c_str());
-    VARIANT_BOOL result = VARIANT_FALSE;
-    const bool succeeded = SUCCEEDED(controller->RunFunction(bstr, &result));
-    SysFreeString(bstr);
-    return (succeeded && result == VARIANT_TRUE);
+  std::wstring wstr(str);
+  std::wstring::size_type i = wstr.find_first_of(L"\"");
+  while (i != std::wstring::npos) {
+    wstr[i] = L'\'';
+    i = wstr.find_first_of(L"\"", i + 1);
   }
-  return false;
+  wstr.insert(0, L"BrailleString(\"");
+  wstr.append(L"\")");
+  const BSTR bstr = SysAllocString(wstr.c_str());
+  VARIANT_BOOL result = VARIANT_FALSE;
+  const bool succeeded = SUCCEEDED(controller->RunFunction(bstr, &result));
+  SysFreeString(bstr);
+  return (succeeded && result == VARIANT_TRUE);
 }
 
 bool ScreenReaderDriverJAWS::Silence() {
-  if (IsActive()) return SUCCEEDED(controller->StopSpeech());
-  return false;
+  return SUCCEEDED(controller->StopSpeech());
 }
 
 bool ScreenReaderDriverJAWS::IsActive() {

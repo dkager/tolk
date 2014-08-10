@@ -21,57 +21,48 @@ ScreenReaderDriverZT::~ScreenReaderDriverZT() {
 }
 
 bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
-  if (IsActive()) {
-    const BSTR bstr = SysAllocString(str);
-    IVoice *voice;
-    if (FAILED(speech->get_CurrentVoice(&voice))) {
-      Finalize();
-      return false;
-    }
-    if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_TRUE))) {
-      voice->Release();
-      Finalize();
-      return false;
-    }
-    const bool succeeded = SUCCEEDED(voice->Speak(bstr));
-    voice->Release();
-    SysFreeString(bstr);
-    if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_FALSE))) {
-      Finalize();
-      return false;
-    }
-    return succeeded;
+  const BSTR bstr = SysAllocString(str);
+  IVoice *voice;
+  if (FAILED(speech->get_CurrentVoice(&voice))) {
+    Finalize();
+    return false;
   }
-  return false;
+  if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_TRUE))) {
+    voice->Release();
+    Finalize();
+    return false;
+  }
+  const bool succeeded = SUCCEEDED(voice->Speak(bstr));
+  voice->Release();
+  SysFreeString(bstr);
+  if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_FALSE))) {
+    Finalize();
+    return false;
+  }
+  return succeeded;
 }
 
 bool ScreenReaderDriverZT::IsSpeaking() {
-  if (IsActive()) {
-    IVoice *voice;
-    if (FAILED(speech->get_CurrentVoice(&voice))) {
-      Finalize();
-      return false;
-    }
-    VARIANT_BOOL result = VARIANT_FALSE;
-    const bool succeeded = SUCCEEDED(voice->get_Speaking(&result));
-    voice->Release();
-    return (succeeded && result == VARIANT_TRUE);
+  IVoice *voice;
+  if (FAILED(speech->get_CurrentVoice(&voice))) {
+    Finalize();
+    return false;
   }
-  return false;
+  VARIANT_BOOL result = VARIANT_FALSE;
+  const bool succeeded = SUCCEEDED(voice->get_Speaking(&result));
+  voice->Release();
+  return (succeeded && result == VARIANT_TRUE);
 }
 
 bool ScreenReaderDriverZT::Silence() {
-  if (IsActive()) {
-    IVoice *voice;
-    if (FAILED(speech->get_CurrentVoice(&voice))) {
-      Finalize();
-      return false;
-    }
-    const bool succeeded = SUCCEEDED(voice->Stop());
-    voice->Release();
-    return succeeded;
+  IVoice *voice;
+  if (FAILED(speech->get_CurrentVoice(&voice))) {
+    Finalize();
+    return false;
   }
-  return false;
+  const bool succeeded = SUCCEEDED(voice->Stop());
+  voice->Release();
+  return succeeded;
 }
 
 bool ScreenReaderDriverZT::IsActive() {

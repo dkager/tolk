@@ -20,29 +20,20 @@ ScreenReaderDriverSAPI::~ScreenReaderDriverSAPI() {
 }
 
 bool ScreenReaderDriverSAPI::Speak(const wchar_t *str, bool interrupt) {
-  if (IsActive()) {
-    DWORD flags = SPF_ASYNC | SPF_IS_NOT_XML;
-    if (interrupt) flags |= SPF_PURGEBEFORESPEAK;
-    return SUCCEEDED(controller->Speak(str, flags, NULL));
-  }
-  return false;
+  DWORD flags = SPF_ASYNC | SPF_IS_NOT_XML;
+  if (interrupt) flags |= SPF_PURGEBEFORESPEAK;
+  return SUCCEEDED(controller->Speak(str, flags, NULL));
 }
 
 bool ScreenReaderDriverSAPI::IsSpeaking() {
-  if (IsActive()) {
-    SPVOICESTATUS status;
-    if (FAILED(controller->GetStatus(&status, NULL))) return false;
-    return status.dwRunningState == SPRS_IS_SPEAKING;
-  }
-  return false;
+  SPVOICESTATUS status;
+  if (FAILED(controller->GetStatus(&status, NULL))) return false;
+  return status.dwRunningState == SPRS_IS_SPEAKING;
 }
 
 bool ScreenReaderDriverSAPI::Silence() {
-  if (IsActive()) {
-    const DWORD flags = SPF_ASYNC | SPF_PURGEBEFORESPEAK | SPF_IS_NOT_XML;
-    return SUCCEEDED(controller->Speak(NULL, flags, NULL));
-  }
-  return false;
+  const DWORD flags = SPF_ASYNC | SPF_PURGEBEFORESPEAK | SPF_IS_NOT_XML;
+  return SUCCEEDED(controller->Speak(NULL, flags, NULL));
 }
 
 void ScreenReaderDriverSAPI::Initialize() {

@@ -25,28 +25,21 @@ ScreenReaderDriverWE::~ScreenReaderDriverWE() {
 
 bool ScreenReaderDriverWE::Speak(const wchar_t *str, bool interrupt) {
   if (interrupt && !Silence()) return false;
-  if (IsActive()) {
-    const BSTR bstr = SysAllocString(str);
-    const bool succeeded = SUCCEEDED(speech->Speak(bstr, varOpt));
-    SysFreeString(bstr);
-    return succeeded;
-  }
-  return false;
+  const BSTR bstr = SysAllocString(str);
+  const bool succeeded = SUCCEEDED(speech->Speak(bstr, varOpt));
+  SysFreeString(bstr);
+  return succeeded;
 }
 
 bool ScreenReaderDriverWE::Braille(const wchar_t *str) {
-  if (IsActive()) {
-    const BSTR bstr = SysAllocString(str);
-    const bool succeeded = SUCCEEDED(braille->Display(bstr, varOpt, varOpt));
-    SysFreeString(bstr);
-    return succeeded;
-  }
-  return false;
+  const BSTR bstr = SysAllocString(str);
+  const bool succeeded = SUCCEEDED(braille->Display(bstr, varOpt, varOpt));
+  SysFreeString(bstr);
+  return succeeded;
 }
 
 bool ScreenReaderDriverWE::Silence() {
-  if (IsActive()) return SUCCEEDED(speech->Silence());
-  return false;
+  return SUCCEEDED(speech->Silence());
 }
 
 bool ScreenReaderDriverWE::IsActive() {
@@ -60,15 +53,12 @@ bool ScreenReaderDriverWE::IsActive() {
 
 bool ScreenReaderDriverWE::Output(const wchar_t *str, bool interrupt) {
   if (interrupt && !Silence()) return false;
-  if (IsActive()) {
-    const BSTR bstr = SysAllocString(str);
-    // Beware short-circuiting.
-    const bool speakSucceeded = SUCCEEDED(speech->Speak(bstr, varOpt));
-    const bool brailleSucceeded = SUCCEEDED(braille->Display(bstr, varOpt, varOpt));
-    SysFreeString(bstr);
-    return (speakSucceeded || brailleSucceeded);
-  }
-  return false;
+  const BSTR bstr = SysAllocString(str);
+  // Beware short-circuiting.
+  const bool speakSucceeded = SUCCEEDED(speech->Speak(bstr, varOpt));
+  const bool brailleSucceeded = SUCCEEDED(braille->Display(bstr, varOpt, varOpt));
+  SysFreeString(bstr);
+  return (speakSucceeded || brailleSucceeded);
 }
 
 void ScreenReaderDriverWE::Initialize() {
