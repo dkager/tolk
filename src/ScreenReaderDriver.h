@@ -11,7 +11,7 @@
 
 class ScreenReaderDriver {
 protected:
-  ScreenReaderDriver(const wchar_t *screenReaderName, bool speech, bool braille);
+  ScreenReaderDriver(const wchar_t *screenReaderName, bool speech, bool braille) : name(screenReaderName), hasSpeech(speech), hasBraille(braille) {}
   ScreenReaderDriver& operator=(const ScreenReaderDriver&) {}
 
 public:
