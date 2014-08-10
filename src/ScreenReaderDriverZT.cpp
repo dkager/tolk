@@ -23,20 +23,15 @@ ScreenReaderDriverZT::~ScreenReaderDriverZT() {
 bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
   const BSTR bstr = SysAllocString(str);
   IVoice *voice;
-  if (FAILED(speech->get_CurrentVoice(&voice))) {
-    Finalize();
-    return false;
-  }
+  if (FAILED(speech->get_CurrentVoice(&voice))) return false;
   if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_TRUE))) {
     voice->Release();
-    Finalize();
     return false;
   }
   const bool succeeded = SUCCEEDED(voice->Speak(bstr));
   SysFreeString(bstr);
   if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_FALSE))) {
     voice->Release();
-    Finalize();
     return false;
   }
   voice->Release();
@@ -45,10 +40,7 @@ bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
 
 bool ScreenReaderDriverZT::IsSpeaking() {
   IVoice *voice;
-  if (FAILED(speech->get_CurrentVoice(&voice))) {
-    Finalize();
-    return false;
-  }
+  if (FAILED(speech->get_CurrentVoice(&voice))) return false;
   VARIANT_BOOL result = VARIANT_FALSE;
   const bool succeeded = SUCCEEDED(voice->get_Speaking(&result));
   voice->Release();
@@ -57,10 +49,7 @@ bool ScreenReaderDriverZT::IsSpeaking() {
 
 bool ScreenReaderDriverZT::Silence() {
   IVoice *voice;
-  if (FAILED(speech->get_CurrentVoice(&voice))) {
-    Finalize();
-    return false;
-  }
+  if (FAILED(speech->get_CurrentVoice(&voice))) return false;
   const bool succeeded = SUCCEEDED(voice->Stop());
   voice->Release();
   return succeeded;
