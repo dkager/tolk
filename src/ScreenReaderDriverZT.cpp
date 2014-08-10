@@ -33,12 +33,13 @@ bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
     return false;
   }
   const bool succeeded = SUCCEEDED(voice->Speak(bstr));
-  voice->Release();
   SysFreeString(bstr);
   if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_FALSE))) {
+    voice->Release();
     Finalize();
     return false;
   }
+  voice->Release();
   return succeeded;
 }
 
