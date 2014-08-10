@@ -80,7 +80,3 @@ void ScreenReaderDriverJAWS::Finalize() {
     controller = NULL;
   }
 }
-
-bool ScreenReaderDriverJAWS::IsRunning() {
-  return (!!FindWindow(L"JFWUI2", L"JAWS"));
-}

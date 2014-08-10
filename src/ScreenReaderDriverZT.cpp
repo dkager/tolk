@@ -80,7 +80,3 @@ void ScreenReaderDriverZT::Finalize() {
     controller = NULL;
   }
 }
-
-bool ScreenReaderDriverZT::IsRunning() {
-  return (!!FindWindow(L"ZXSPEECHWNDCLASS", L"ZoomText Speech Processor"));
-}

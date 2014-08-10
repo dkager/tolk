@@ -28,7 +28,7 @@ public:
 private:
   void Initialize();
   void Finalize();
-  bool IsRunning();
+  bool IsRunning() { return (!!FindWindow(L"GWMExternalControl", L"External Control")); }
 
 private:
   _Application *controller;

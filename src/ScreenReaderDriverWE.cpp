@@ -85,7 +85,3 @@ void ScreenReaderDriverWE::Finalize() {
     controller = NULL;
   }
 }
-
-bool ScreenReaderDriverWE::IsRunning() {
-  return (!!FindWindow(L"GWMExternalControl", L"External Control"));
-}
