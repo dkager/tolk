@@ -28,7 +28,7 @@ bool ScreenReaderDriverSAPI::Speak(const wchar_t *str, bool interrupt) {
 bool ScreenReaderDriverSAPI::IsSpeaking() {
   SPVOICESTATUS status;
   if (FAILED(controller->GetStatus(&status, NULL))) return false;
-  return status.dwRunningState == SPRS_IS_SPEAKING;
+  return (status.dwRunningState == SPRS_IS_SPEAKING);
 }
 
 bool ScreenReaderDriverSAPI::Silence() {
