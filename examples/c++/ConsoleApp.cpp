@@ -41,7 +41,6 @@ void main() {
 
   wcout << L"Let's output some text..." << endl;
   if (!Tolk_Output(L"Hello, World!")) {
-    system("pause");
     wcout << L"Failed to output text" << endl;
   }
 
