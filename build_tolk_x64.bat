@@ -4,6 +4,6 @@ cl /nologo /c /O2 /EHsc /GL /GR- /MT /MP /W4 /WL /D_EXPORTING /D_MT /D_UNICODE /
 
 rc /nologo /n /d _WIN64 /fo bin\x64\Tolk.res src\Tolk.rc
 
-link /nologo /DLL /DYNAMICBASE /INCREMENTAL:NO /LTCG /MACHINE:X64 /MANIFEST:NO /NXCOMPAT /OPT:REF /OPT:ICF /VERSION:"1.0" /OUT:bin\x64\Tolk.dll User32.Lib Ole32.Lib OleAut32.Lib bin\x64\*.obj bin\x64\Tolk.res
+link /nologo /DLL /INCREMENTAL:NO /LTCG /MACHINE:X64 /MANIFEST:NO /NXCOMPAT /OPT:REF /OPT:ICF /VERSION:"1.0" /OUT:bin\x64\Tolk.dll User32.Lib Ole32.Lib OleAut32.Lib bin\x64\*.obj bin\x64\Tolk.res
 
 del bin\x64\*.obj bin\x64\Tolk.exp bin\x64\Tolk.res
