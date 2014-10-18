@@ -6,6 +6,7 @@
  *  License:        LGPLv3
  */
 
+#include <windows.h>
 #include "Tolk.h"
 #include "ScreenReaderDriverJAWS.h"
 #include "ScreenReaderDriverNVDA.h"
@@ -14,7 +15,6 @@
 #include "ScreenReaderDriverSNova.h"
 #include "ScreenReaderDriverWE.h"
 #include "ScreenReaderDriverZT.h"
-#include <windows.h>
 
 bool g_isLoaded = false;
 ScreenReaderDriver *g_screenReaderDrivers[NSCREENREADERDRIVERS];

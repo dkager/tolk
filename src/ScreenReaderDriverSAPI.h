@@ -9,8 +9,8 @@
 #ifndef _SCREEN_READER_DRIVER_SAPI_H_
 #define _SCREEN_READER_DRIVER_SAPI_H_
 
-#include "ScreenReaderDriver.h"
 #include <sapi.h>
+#include "ScreenReaderDriver.h"
 
 class ScreenReaderDriverSAPI : public ScreenReaderDriver {
 public:
