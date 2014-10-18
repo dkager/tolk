@@ -8,9 +8,9 @@
 
 #ifdef _WITH_REAPER
 
-#include "..\Tolk.h"
 #include <windows.h>
 #include "reaper_plugin.h"
+#include "..\Tolk.h"
 
 HWND g_hwnd = NULL;
 int g_actionCurrentScreenReaderId = 0;
