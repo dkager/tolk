@@ -15,12 +15,9 @@
 #include "ScreenReaderDriverWE.h"
 #include "ScreenReaderDriverZT.h"
 #include <windows.h>
-#include <array>
-
-using namespace std;
 
 bool g_isLoaded = false;
-array<ScreenReaderDriver *, NSCREENREADERDRIVERS> *g_screenReaderDrivers = NULL;
+ScreenReaderDriver *g_screenReaderDrivers[NSCREENREADERDRIVERS];
 ScreenReaderDriverSAPI *g_sapi = NULL;
 ScreenReaderDriver *g_currentScreenReaderDriver = NULL;
 bool g_trySAPI = false;
@@ -33,13 +30,12 @@ extern "C" {
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   if (CoInitializeEx(NULL, COINIT_MULTITHREADED) == S_FALSE) CoUninitialize();
   if (Tolk_IsLoaded()) return;
-  g_screenReaderDrivers = new array<ScreenReaderDriver *, NSCREENREADERDRIVERS>();
-  (*g_screenReaderDrivers)[0] = new ScreenReaderDriverJAWS();
-  (*g_screenReaderDrivers)[1] = new ScreenReaderDriverWE();
-  (*g_screenReaderDrivers)[2] = new ScreenReaderDriverNVDA();
-  (*g_screenReaderDrivers)[3] = new ScreenReaderDriverSNova();
-  (*g_screenReaderDrivers)[4] = new ScreenReaderDriverSA();
-  (*g_screenReaderDrivers)[5] = new ScreenReaderDriverZT();
+  g_screenReaderDrivers[0] = new ScreenReaderDriverJAWS();
+  g_screenReaderDrivers[1] = new ScreenReaderDriverWE();
+  g_screenReaderDrivers[2] = new ScreenReaderDriverNVDA();
+  g_screenReaderDrivers[3] = new ScreenReaderDriverSNova();
+  g_screenReaderDrivers[4] = new ScreenReaderDriverSA();
+  g_screenReaderDrivers[5] = new ScreenReaderDriverZT();
   if (g_trySAPI) {
     g_sapi = new ScreenReaderDriverSAPI();
   }
@@ -60,10 +56,8 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
       g_sapi = NULL;
     }
     for (int i = NSCREENREADERDRIVERS - 1; i >= 0; --i) {
-      delete (*g_screenReaderDrivers)[i];
+      delete g_screenReaderDrivers[i];
     }
-    delete g_screenReaderDrivers;
-    g_screenReaderDrivers = NULL;
   }
   CoUninitialize();
 }
@@ -103,8 +97,8 @@ TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
     return g_currentScreenReaderDriver->GetName();
   }
   for (int i = 0; i < NSCREENREADERDRIVERS; ++i) {
-    if ((*g_screenReaderDrivers)[i] != g_currentScreenReaderDriver && (*g_screenReaderDrivers)[i]->IsActive()) {
-      g_currentScreenReaderDriver = (*g_screenReaderDrivers)[i];
+    if (g_screenReaderDrivers[i] != g_currentScreenReaderDriver && g_screenReaderDrivers[i]->IsActive()) {
+      g_currentScreenReaderDriver = g_screenReaderDrivers[i];
       return g_currentScreenReaderDriver->GetName();
     }
   }
