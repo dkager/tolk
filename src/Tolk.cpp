@@ -19,6 +19,7 @@
 
 using namespace std;
 
+bool g_isLoaded = false;
 array<ScreenReaderDriver *, NSCREENREADERDRIVERS> *g_screenReaderDrivers = NULL;
 ScreenReaderDriverSAPI *g_sapi = NULL;
 ScreenReaderDriver *g_currentScreenReaderDriver = NULL;
@@ -42,15 +43,17 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   if (g_trySAPI) {
     g_sapi = new ScreenReaderDriverSAPI();
   }
+  g_isLoaded = true;
   Tolk_DetectScreenReader();
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsLoaded() {
-  return (!!g_screenReaderDrivers);
+  return g_isLoaded;
 }
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
   if (Tolk_IsLoaded()) {
+    g_isLoaded = false;
     g_currentScreenReaderDriver = NULL;
     if (g_sapi) {
       delete g_sapi;
