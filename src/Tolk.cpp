@@ -23,9 +23,7 @@ ScreenReaderDriver *g_currentScreenReaderDriver = NULL;
 bool g_trySAPI = false;
 bool g_preferSAPI = false;
 
-#ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   if (CoInitializeEx(NULL, COINIT_MULTITHREADED) == S_FALSE) CoUninitialize();
@@ -152,6 +150,4 @@ TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_Silence() {
   return false;
 }
 
-#ifdef __cplusplus
 } // extern "C"
-#endif // __cplusplus
