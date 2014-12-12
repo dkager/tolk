@@ -7,7 +7,7 @@ Screen Reader Abstraction Library
 Introduction
 ------------
 
-Tolk is an application extension (DLL) that allows Windows applications to output text through screen reader software (assistive technology for the blind and visually impaired).  It is an abstraction layer on top of the vendor-specific APIs that auto-detects the active screen reader, allowing for clean and simple client code.  Speech and braille output are supported in 32-bit and 64-bit environments.  The `Screen Readers` table below provides more details.  In addition to screen readers, Microsoft Speech API (SAPI) is also supported.  This library is not currently thread-safe.
+Tolk is an application extension (DLL) that allows Windows applications to output text through screen reader software (assistive technology for the blind and visually impaired).  It is an abstraction layer on top of the vendor-specific APIs that auto-detects the active screen reader, allowing for clean and simple client code.  Speech and braille output are supported in 32-bit and 64-bit environments.  The `Screen Readers` table below provides more details.  In addition to screen readers, Microsoft Speech API (SAPI) is also supported.  The name Tolk is a Dutch word meaning interpreter.
 
 A complete archive with source code and pre-compiled binaries is available from [the project page](http://davykager.com/projects/tolk/).  This distribution also includes compiled wrappers for a number of languages:
 
