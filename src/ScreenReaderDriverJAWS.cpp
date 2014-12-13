@@ -9,8 +9,6 @@
 #include "ScreenReaderDriverJAWS.h"
 #include <string>
 
-using namespace std;
-
 ScreenReaderDriverJAWS::ScreenReaderDriverJAWS() :
   ScreenReaderDriver(L"JAWS", true, true),
   controller(NULL)
