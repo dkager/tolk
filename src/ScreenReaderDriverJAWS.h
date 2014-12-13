@@ -28,7 +28,7 @@ public:
 private:
   void Initialize();
   void Finalize();
-  bool IsRunning() { return (!!FindWindow(L"JFWUI2", L"JAWS")); }
+  bool IsRunning() { return (!!FindWindow(L"JFWUI2", NULL)); }
 
 private:
   IJawsApi *controller;
