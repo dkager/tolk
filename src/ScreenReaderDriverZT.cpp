@@ -65,7 +65,7 @@ bool ScreenReaderDriverZT::IsActive() {
 }
 
 void ScreenReaderDriverZT::Initialize() {
-  if (FAILED(CoCreateInstance(CLSID_ZoomText, NULL, CLSCTX_LOCAL_SERVER, IID_IZoomText2, (void **)&controller)))
+  if (controller || FAILED(CoCreateInstance(CLSID_ZoomText, NULL, CLSCTX_LOCAL_SERVER, IID_IZoomText2, (void **)&controller)))
     return;
   if (FAILED(controller->get_Speech(&speech))) Finalize();
 }
