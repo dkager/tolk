@@ -35,7 +35,7 @@ bool ScreenReaderDriverSAPI::IsSpeaking() {
 
 bool ScreenReaderDriverSAPI::Silence() {
   if (!controller) return false;
-  const DWORD flags = SPF_ASYNC | SPF_PURGEBEFORESPEAK | SPF_IS_NOT_XML;
+  const DWORD flags = SPF_ASYNC | SPF_IS_NOT_XML | SPF_PURGEBEFORESPEAK;
   return SUCCEEDED(controller->Speak(NULL, flags, NULL));
 }
 
