@@ -20,18 +20,21 @@ ScreenReaderDriverSAPI::~ScreenReaderDriverSAPI() {
 }
 
 bool ScreenReaderDriverSAPI::Speak(const wchar_t *str, bool interrupt) {
+  if (!controller) return false;
   DWORD flags = SPF_ASYNC | SPF_IS_NOT_XML;
   if (interrupt) flags |= SPF_PURGEBEFORESPEAK;
   return SUCCEEDED(controller->Speak(str, flags, NULL));
 }
 
 bool ScreenReaderDriverSAPI::IsSpeaking() {
+  if (!controller) return false;
   SPVOICESTATUS status;
   if (FAILED(controller->GetStatus(&status, NULL))) return false;
   return (status.dwRunningState == SPRS_IS_SPEAKING);
 }
 
 bool ScreenReaderDriverSAPI::Silence() {
+  if (!controller) return false;
   const DWORD flags = SPF_ASYNC | SPF_PURGEBEFORESPEAK | SPF_IS_NOT_XML;
   return SUCCEEDED(controller->Speak(NULL, flags, NULL));
 }

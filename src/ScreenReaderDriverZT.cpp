@@ -21,6 +21,7 @@ ScreenReaderDriverZT::~ScreenReaderDriverZT() {
 }
 
 bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
+  if (!controller) return false;
   const BSTR bstr = SysAllocString(str);
   IVoice *voice;
   if (FAILED(speech->get_CurrentVoice(&voice))) return false;
@@ -39,6 +40,7 @@ bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
 }
 
 bool ScreenReaderDriverZT::IsSpeaking() {
+  if (!controller) return false;
   IVoice *voice;
   if (FAILED(speech->get_CurrentVoice(&voice))) return false;
   VARIANT_BOOL result = VARIANT_FALSE;
@@ -48,6 +50,7 @@ bool ScreenReaderDriverZT::IsSpeaking() {
 }
 
 bool ScreenReaderDriverZT::Silence() {
+  if (!controller) return false;
   IVoice *voice;
   if (FAILED(speech->get_CurrentVoice(&voice))) return false;
   const bool succeeded = SUCCEEDED(voice->Stop());

@@ -21,6 +21,7 @@ ScreenReaderDriverJAWS::~ScreenReaderDriverJAWS() {
 }
 
 bool ScreenReaderDriverJAWS::Speak(const wchar_t *str, bool interrupt) {
+  if (!controller) return false;
   const BSTR bstr = SysAllocString(str);
   VARIANT_BOOL result = VARIANT_FALSE;
   const VARIANT_BOOL flush = interrupt ? VARIANT_TRUE : VARIANT_FALSE;
@@ -30,6 +31,7 @@ bool ScreenReaderDriverJAWS::Speak(const wchar_t *str, bool interrupt) {
 }
 
 bool ScreenReaderDriverJAWS::Braille(const wchar_t *str) {
+  if (!controller) return false;
   std::wstring wstr(str);
   std::wstring::size_type i = wstr.find_first_of(L"\"");
   while (i != std::wstring::npos) {
@@ -46,6 +48,7 @@ bool ScreenReaderDriverJAWS::Braille(const wchar_t *str) {
 }
 
 bool ScreenReaderDriverJAWS::Silence() {
+  if (!controller) return false;
   return SUCCEEDED(controller->StopSpeech());
 }
 
