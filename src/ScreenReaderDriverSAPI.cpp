@@ -29,6 +29,9 @@ bool ScreenReaderDriverSAPI::Speak(const wchar_t *str, bool interrupt) {
 bool ScreenReaderDriverSAPI::IsSpeaking() {
   if (!controller) return false;
   SPVOICESTATUS status;
+  // The second parameter to GetStatus() can be NULL,
+  // suppress warning when compiling with /analyze.
+#pragma warning(suppress:6387)
   if (FAILED(controller->GetStatus(&status, NULL))) return false;
   return (status.dwRunningState == SPRS_IS_SPEAKING);
 }
