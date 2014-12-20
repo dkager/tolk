@@ -22,13 +22,13 @@ ScreenReaderDriverZT::~ScreenReaderDriverZT() {
 
 bool ScreenReaderDriverZT::Speak(const wchar_t *str, bool interrupt) {
   if (!controller) return false;
-  const BSTR bstr = SysAllocString(str);
   IVoice *voice;
   if (FAILED(speech->get_CurrentVoice(&voice))) return false;
   if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_TRUE))) {
     voice->Release();
     return false;
   }
+  const BSTR bstr = SysAllocString(str);
   const bool succeeded = SUCCEEDED(voice->Speak(bstr));
   SysFreeString(bstr);
   if (interrupt && FAILED(voice->put_AllowInterrupt(VARIANT_FALSE))) {
