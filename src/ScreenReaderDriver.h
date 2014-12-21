@@ -12,7 +12,6 @@
 class ScreenReaderDriver {
 protected:
   ScreenReaderDriver(const wchar_t *screenReaderName, bool speech, bool braille) :
-    lastResult(false),
     name(screenReaderName),
     hasSpeech(speech),
     hasBraille(braille)
@@ -34,9 +33,6 @@ public:
   const wchar_t * GetName() { return name; }
   bool HasSpeech() { return hasSpeech; }
   bool HasBraille() { return hasBraille; }
-
-protected:
-  bool lastResult;
 
 private:
   const wchar_t *name;
