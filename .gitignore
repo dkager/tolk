@@ -1,0 +1,9 @@
+*.exe
+*.dll
+*.lib
+*.zip
+*.jar
+*.pyo
+*.html
+examples/bgt
+src/bgt
