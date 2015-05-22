@@ -1,4 +1,3 @@
 @echo off
-python -m compileall src\python\Tolk.py
-move src\python\__pycache__\Tolk*.pyc bin\Tolk.pyc
-rmdir src\python\__pycache__
+python -O -m py_compile src\python\Tolk.py
+move src\python\Tolk.pyo bin\Tolk.pyo
