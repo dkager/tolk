@@ -21,10 +21,8 @@
 #ifdef __cplusplus
 extern "C" {
 #else
+#include <stdbool.h>
 #include <wchar.h>
-typedef unsigned char bool;
-#define false 0
-#define true 1
 #endif // __cplusplus
 
 /**
