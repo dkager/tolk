@@ -12,34 +12,34 @@ using System.Runtime.InteropServices;
 namespace DavyKager {
 
   public sealed class Tolk {
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern void Tolk_Load();
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_IsLoaded();
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern void Tolk_Unload();
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern void Tolk_TrySAPI(bool trySAPI);
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern void Tolk_PreferSAPI(bool preferSAPI);
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern IntPtr Tolk_DetectScreenReader();
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_HasSpeech();
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_HasBraille();
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_Output(
         [MarshalAs(UnmanagedType.LPWStr)]String str, bool interrupt);
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_Speak(
         [MarshalAs(UnmanagedType.LPWStr)]String str, bool interrupt);
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_Braille(
         [MarshalAs(UnmanagedType.LPWStr)]String str);
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_IsSpeaking();
-    [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
+    [DllImport("Tolk.dll", CharSet=CharSet.Unicode, CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_Silence();
 
     // Prevent construction
