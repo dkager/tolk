@@ -88,7 +88,7 @@ Should you want to compile Tolk yourself, here's what you need to build the whol
 *   Windows Software Development Kit (SDK)
 *   Java Development Kit (JDK)
 *   Microsoft .NET Framework
-*   Python 3.x
+*   Python
 *   Pandoc
 *   GnuWin32 zip or other compatible program
 
