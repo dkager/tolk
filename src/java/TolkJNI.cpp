@@ -52,21 +52,21 @@ JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_hasBraille(JNIEnv *, jcl
 }
 
 JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_output(JNIEnv *env, jclass, jstring jstr, jboolean interrupt) {
-  const wchar_t *str = (wchar_t *)(env->GetStringChars(jstr, JNI_FALSE));
+  const wchar_t *str = (wchar_t *)(env->GetStringChars(jstr, NULL));
   const bool result = Tolk_Output(str, interrupt ? true : false);
   env->ReleaseStringChars(jstr, (jchar *)str);
   return result;
 }
 
 JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_speak(JNIEnv *env, jclass, jstring jstr, jboolean interrupt) {
-  const wchar_t *str = (wchar_t *)(env->GetStringChars(jstr, JNI_FALSE));
+  const wchar_t *str = (wchar_t *)(env->GetStringChars(jstr, NULL));
   const bool result = Tolk_Speak(str, interrupt ? true : false);
   env->ReleaseStringChars(jstr, (jchar *)str);
   return result;
 }
 
 JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_braille(JNIEnv *env, jclass, jstring jstr) {
-  const wchar_t *str = (wchar_t *)(env->GetStringChars(jstr, JNI_FALSE));
+  const wchar_t *str = (wchar_t *)(env->GetStringChars(jstr, NULL));
   const bool result = Tolk_Braille(str);
   env->ReleaseStringChars(jstr, (jchar *)str);
   return result;
@@ -81,7 +81,7 @@ JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_silence(JNIEnv *, jclass
 }
 
 #ifdef __cplusplus
-}
+} // extern "C"
 #endif // __cplusplus
 
 #endif // _WITH_JNI
