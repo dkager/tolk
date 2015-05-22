@@ -11,13 +11,15 @@
 ## See Tolk.h for full documentation of all functions.
 ## Note that for Python the functions are provided in module Tolk,
 ## that the prefix Tolk_ has been removed from the names,
-## and that the names are lower_cased_with_underscores.
+## and that the names are lower_case_with_underscores.
 
 import Tolk
 
 print("Tolk -- Python Console App Example")
 
 print("Initializing Tolk...")
+## Tolk will also initialize COM
+## if it has not been initialized on the calling thread
 Tolk.load()
 
 print("Querying for the active screen reader driver...")
@@ -37,6 +39,7 @@ if not Tolk.output("Hello, World!"):
   print("Failed to output text")
 
 print("Finalizing Tolk...")
+## Tolk will also try to uninitialize COM
 Tolk.unload()
 
 print("Done!\n")

@@ -20,6 +20,8 @@ EndIf
 PrintN("Tolk -- PureBasic Console App Example")
 
 PrintN("Initializing Tolk...")
+;; Tolk will also initialize COM
+;; if it has not been initialized on the calling thread
 Tolk::Load()
 
 PrintN("Querying for the active screen reader driver...")
@@ -43,6 +45,7 @@ If Not Tolk::Output("Hello, World!")
 EndIf
 
 PrintN("Finalizing Tolk...")
+;; Tolk will also try to uninitialize COM
 Tolk::Unload()
 
 PrintN("Done!")

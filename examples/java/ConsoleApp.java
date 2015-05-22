@@ -9,9 +9,9 @@
 
 // See README.md for general information.
 // See Tolk.h for full documentation of all functions.
-// Note that for Java the functions are provided as static functions of class Tolk,
+// Note that for Java the functions are provided as static methods of class Tolk,
 // that the prefix Tolk_ has been removed from the names,
-// and that the names are lowerCamelCased.
+// and that the names are lowerCamelCase.
 
 import com.davykager.tolk.Tolk;
 
@@ -20,6 +20,8 @@ public class ConsoleApp {
     System.out.println("Tolk -- Java Console App Example");
 
     System.out.println("Initializing Tolk...");
+    // Tolk will also initialize COM
+    // if it has not been initialized on the calling thread
     Tolk.load();
 
     System.out.println("Querying for the active screen reader driver...");
@@ -44,6 +46,7 @@ public class ConsoleApp {
     }
 
     System.out.println("Finalizing Tolk...");
+    // Tolk will also try to uninitialize COM
     Tolk.unload();
 
     System.out.println("Done!");
