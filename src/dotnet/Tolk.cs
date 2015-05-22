@@ -30,13 +30,13 @@ namespace DavyKager {
       private static extern bool Tolk_HasBraille();
     [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_Output(
-        [MarshalAs(UnmanagedType.LPWStr)]string str, bool interrupt);
+        [MarshalAs(UnmanagedType.LPWStr)]String str, bool interrupt);
     [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_Speak(
-        [MarshalAs(UnmanagedType.LPWStr)]string str, bool interrupt);
+        [MarshalAs(UnmanagedType.LPWStr)]String str, bool interrupt);
     [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_Braille(
-        [MarshalAs(UnmanagedType.LPWStr)]string str);
+        [MarshalAs(UnmanagedType.LPWStr)]String str);
     [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
       private static extern bool Tolk_IsSpeaking();
     [DllImport("Tolk.dll", CallingConvention=CallingConvention.Cdecl)]
@@ -51,12 +51,12 @@ namespace DavyKager {
     public static void TrySAPI(bool trySAPI) { Tolk_TrySAPI(trySAPI); }
     public static void PreferSAPI(bool preferSAPI) { Tolk_PreferSAPI(preferSAPI); }
     // Prevent the marshaller from freeing the unmanaged string
-    public static string DetectScreenReader() { return Marshal.PtrToStringUni(Tolk_DetectScreenReader()); }
+    public static String DetectScreenReader() { return Marshal.PtrToStringUni(Tolk_DetectScreenReader()); }
     public static bool HasSpeech() { return Tolk_HasSpeech(); }
     public static bool HasBraille() { return Tolk_HasBraille(); }
-    public static bool Output(string str, bool interrupt = false) { return Tolk_Output(str, interrupt); }
-    public static bool Speak(string str, bool interrupt = false) { return Tolk_Speak(str, interrupt); }
-    public static bool Braille(string str) { return Tolk_Braille(str); }
+    public static bool Output(String str, bool interrupt = false) { return Tolk_Output(str, interrupt); }
+    public static bool Speak(String str, bool interrupt = false) { return Tolk_Speak(str, interrupt); }
+    public static bool Braille(String str) { return Tolk_Braille(str); }
     public static bool IsSpeaking() { return Tolk_IsSpeaking(); }
     public static bool Silence() { return Tolk_Silence(); }
   }
