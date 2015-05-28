@@ -1,5 +1,6 @@
 *.exe
 *.dll
+*.exp
 *.lib
 *.zip
 *.jar
