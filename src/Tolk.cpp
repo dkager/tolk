@@ -28,12 +28,13 @@ extern "C" {
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   if (CoInitializeEx(NULL, COINIT_MULTITHREADED) == S_FALSE) CoUninitialize();
   if (Tolk_IsLoaded()) return;
-  g_screenReaderDrivers[0] = new ScreenReaderDriverJAWS();
-  g_screenReaderDrivers[1] = new ScreenReaderDriverWE();
-  g_screenReaderDrivers[2] = new ScreenReaderDriverNVDA();
-  g_screenReaderDrivers[3] = new ScreenReaderDriverSNova();
-  g_screenReaderDrivers[4] = new ScreenReaderDriverSA();
-  g_screenReaderDrivers[5] = new ScreenReaderDriverZT();
+  int i = 0;
+  g_screenReaderDrivers[i++] = new ScreenReaderDriverJAWS();
+  g_screenReaderDrivers[i++] = new ScreenReaderDriverWE();
+  g_screenReaderDrivers[i++] = new ScreenReaderDriverNVDA();
+  g_screenReaderDrivers[i++] = new ScreenReaderDriverSNova();
+  g_screenReaderDrivers[i++] = new ScreenReaderDriverSA();
+  g_screenReaderDrivers[i++] = new ScreenReaderDriverZT();
   if (g_trySAPI)
     g_sapi = new ScreenReaderDriverSAPI();
   g_isLoaded = true;
