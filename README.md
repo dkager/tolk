@@ -14,9 +14,8 @@ A complete archive with source code and pre-compiled binaries is available from 
 *   Java
 *   Microsoft .NET (C# and VB)
 *   Python
-*   PureBasic
 *   AutoIt
-*   REAPER (ReaScript, etc)
+*   PureBasic
 
 
 License
@@ -29,7 +28,7 @@ Client libraries and headers are distributed under their own license.
 Usage
 -----
 
-To use Tolk, import the appropriate version of `Tolk.dll` into your application.  In C/C++ this is usually done by including `Tolk.h` and linking with the appropriate import library `Tolk.lib` (load-time binding).  You could also use the Windows API `LoadLibrary` and `FreeLibrary` functions (run-time binding).  If you're working in another language, use its specific facilities to call into the DLL.  A number of wrappers for popular languages have been provided to make things easier: `Tolk.jar` for Java, `TolkDotNet.dll` for C#/VB.NET, `Tolk.pyc` for Python, `Tolk.pb` for PureBasic, `ScreenREAPER.cpp` for a REAPER extension.  Take a look at the `examples` directory to get started with these languages.
+To use Tolk, import the appropriate version of `Tolk.dll` into your application.  In C/C++ this is usually done by including `Tolk.h` and linking with the appropriate import library `Tolk.lib` (load-time binding).  You could also use the Windows API `LoadLibrary` and `FreeLibrary` functions (run-time binding).  If you're working in another language, use its specific facilities to call into the DLL.  A number of wrappers for popular languages have been provided to make things easier: `Tolk.jar` for Java, `TolkDotNet.dll` for C#/VB.NET, `Tolk.pyc` for Python, `Tolk.au3` for AutoIt and `Tolk.pb` for PureBasic.  Take a look at the `examples` directory to get started with these languages.
 
 The `lib` directory contains the required screen reader API DLLs.  Tolk expects these DLLs to be found either in the current working directory or somewhere in the PATH.  If a DLL for a certain screen reader is not found, that screen reader will be unavailable.  Note that some screen readers use COM and therefore don't need API DLLs.
 
