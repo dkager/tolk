@@ -84,7 +84,7 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI) {
 
 TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
   if (!Tolk_IsLoaded()) return NULL;
-  if (g_currentScreenReaderDriver && g_currentScreenReaderDriver->IsActive())
+  if (g_currentScreenReaderDriver && (g_preferSAPI || g_currentScreenReaderDriver != g_sapi) && g_currentScreenReaderDriver->IsActive())
     return g_currentScreenReaderDriver->GetName();
   if (g_trySAPI && g_preferSAPI && g_sapi && g_sapi->IsActive()) {
     g_currentScreenReaderDriver = g_sapi;
