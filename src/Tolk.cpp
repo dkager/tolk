@@ -34,7 +34,10 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   g_screenReaderDrivers.push_back(new ScreenReaderDriverJAWS());
   g_screenReaderDrivers.push_back(new ScreenReaderDriverWE());
   g_screenReaderDrivers.push_back(new ScreenReaderDriverNVDA());
+#ifndef _WIN64
+  // This driver does not have 64-bit support.
   g_screenReaderDrivers.push_back(new ScreenReaderDriverSNova());
+#endif
   g_screenReaderDrivers.push_back(new ScreenReaderDriverSA());
   g_screenReaderDrivers.push_back(new ScreenReaderDriverZT());
   if (g_trySAPI)
