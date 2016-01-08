@@ -12,11 +12,10 @@
 
 #define UNICODE
 
-#include "..\..\src\Tolk.h"
 #include <stdio.h>
+#include "..\..\src\Tolk.h"
 
 void main() {
-  // Declare up here to make older MSVC work
   const wchar_t *name = NULL;
 
   wprintf_s(L"Tolk -- C Console App Example\n");

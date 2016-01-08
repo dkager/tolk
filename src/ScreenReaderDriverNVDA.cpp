@@ -7,7 +7,7 @@
  */
 
 // The NVDA Project provides a header and libraries,
-// but we don't use these to support running even if the DLL is missing.
+// but we don't use these in order to support running even if the DLL is missing.
 
 #include "ScreenReaderDriverNVDA.h"
 

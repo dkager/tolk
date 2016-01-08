@@ -13,9 +13,7 @@
 #include "TolkJNI.h" // Auto-generated using ..\..\build_jni.bat
 #include "..\Tolk.h"
 
-#ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
 
 JNIEXPORT void JNICALL Java_com_davykager_tolk_Tolk_load(JNIEnv *, jclass) {
   Tolk_Load();
@@ -80,8 +78,6 @@ JNIEXPORT jboolean JNICALL Java_com_davykager_tolk_Tolk_silence(JNIEnv *, jclass
   return Tolk_Silence();
 }
 
-#ifdef __cplusplus
 } // extern "C"
-#endif // __cplusplus
 
 #endif // _WITH_JNI

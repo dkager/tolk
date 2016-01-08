@@ -10,8 +10,8 @@
 // See README.md for general information.
 // See Tolk.h for full documentation of all functions.
 
-#include "..\..\src\Tolk.h"
 #include <iostream>
+#include "..\..\src\Tolk.h"
 
 using namespace std;
 

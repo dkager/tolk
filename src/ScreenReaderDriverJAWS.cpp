@@ -6,8 +6,10 @@
  *  License:        LGPLv3
  */
 
-#include "ScreenReaderDriverJAWS.h"
 #include <string>
+#include "ScreenReaderDriverJAWS.h"
+
+using namespace std;
 
 ScreenReaderDriverJAWS::ScreenReaderDriverJAWS() :
   ScreenReaderDriver(L"JAWS", true, true),
@@ -32,9 +34,9 @@ bool ScreenReaderDriverJAWS::Speak(const wchar_t *str, bool interrupt) {
 
 bool ScreenReaderDriverJAWS::Braille(const wchar_t *str) {
   if (!controller) return false;
-  std::wstring wstr(str);
-  std::wstring::size_type i = wstr.find_first_of(L"\"");
-  while (i != std::wstring::npos) {
+  wstring wstr(str);
+  wstring::size_type i = wstr.find_first_of(L"\"");
+  while (i != wstring::npos) {
     wstr[i] = L'\'';
     i = wstr.find_first_of(L"\"", i + 1);
   }
