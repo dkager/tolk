@@ -2,11 +2,12 @@
  *  Product:        Tolk
  *  File:           Tolk.cpp
  *  Description:    C-style DLL exports.
- *  Copyright:      (c) 2014, Davy Kager <mail@davykager.nl>
+ *  Copyright:      (c) 2014-2016, Davy Kager <mail@davykager.nl>
  *  License:        LGPLv3
  */
 
 #include <windows.h>
+#include <list>
 #include "Tolk.h"
 #include "ScreenReaderDriverJAWS.h"
 #include "ScreenReaderDriverNVDA.h"
@@ -16,8 +17,10 @@
 #include "ScreenReaderDriverWE.h"
 #include "ScreenReaderDriverZT.h"
 
+using namespace std;
+
 bool g_isLoaded = false;
-ScreenReaderDriver *g_screenReaderDrivers[NSCREENREADERDRIVERS];
+list<ScreenReaderDriver*> g_screenReaderDrivers;
 ScreenReaderDriverSAPI *g_sapi = NULL;
 ScreenReaderDriver *g_currentScreenReaderDriver = NULL;
 bool g_trySAPI = false;
@@ -28,13 +31,12 @@ extern "C" {
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   if (CoInitializeEx(NULL, COINIT_MULTITHREADED) == S_FALSE) CoUninitialize();
   if (Tolk_IsLoaded()) return;
-  int i = 0;
-  g_screenReaderDrivers[i++] = new ScreenReaderDriverJAWS();
-  g_screenReaderDrivers[i++] = new ScreenReaderDriverWE();
-  g_screenReaderDrivers[i++] = new ScreenReaderDriverNVDA();
-  g_screenReaderDrivers[i++] = new ScreenReaderDriverSNova();
-  g_screenReaderDrivers[i++] = new ScreenReaderDriverSA();
-  g_screenReaderDrivers[i++] = new ScreenReaderDriverZT();
+  g_screenReaderDrivers.push_back(new ScreenReaderDriverJAWS());
+  g_screenReaderDrivers.push_back(new ScreenReaderDriverWE());
+  g_screenReaderDrivers.push_back(new ScreenReaderDriverNVDA());
+  g_screenReaderDrivers.push_back(new ScreenReaderDriverSNova());
+  g_screenReaderDrivers.push_back(new ScreenReaderDriverSA());
+  g_screenReaderDrivers.push_back(new ScreenReaderDriverZT());
   if (g_trySAPI)
     g_sapi = new ScreenReaderDriverSAPI();
   g_isLoaded = true;
@@ -53,8 +55,9 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Unload() {
       delete g_sapi;
       g_sapi = NULL;
     }
-    for (int i = NSCREENREADERDRIVERS - 1; i >= 0; --i)
-      delete g_screenReaderDrivers[i];
+    for (list<ScreenReaderDriver*>::reverse_iterator rit = g_screenReaderDrivers.rbegin(); rit != g_screenReaderDrivers.rend(); ++rit)
+      delete *rit;
+    g_screenReaderDrivers.clear();
   }
   CoUninitialize();
 }
@@ -91,11 +94,13 @@ TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
     g_currentScreenReaderDriver = g_sapi;
     return g_currentScreenReaderDriver->GetName();
   }
-  for (int i = 0; i < NSCREENREADERDRIVERS; ++i)
-    if (g_screenReaderDrivers[i] != g_currentScreenReaderDriver && g_screenReaderDrivers[i]->IsActive()) {
-      g_currentScreenReaderDriver = g_screenReaderDrivers[i];
+  for (list<ScreenReaderDriver*>::iterator it = g_screenReaderDrivers.begin(); it != g_screenReaderDrivers.end(); ++it) {
+    ScreenReaderDriver *screenReaderDriver = *it;
+    if (screenReaderDriver != g_currentScreenReaderDriver && screenReaderDriver->IsActive()) {
+      g_currentScreenReaderDriver = screenReaderDriver;
       return g_currentScreenReaderDriver->GetName();
     }
+  }
   if (g_trySAPI && !g_preferSAPI && g_sapi && g_sapi->IsActive()) {
     g_currentScreenReaderDriver = g_sapi;
     return g_currentScreenReaderDriver->GetName();

@@ -2,14 +2,12 @@
  *  Product:        Tolk
  *  File:           Tolk.h
  *  Description:    Main include file for C-style DLL exports.
- *  Copyright:      (c) 2014, Davy Kager <mail@davykager.nl>
+ *  Copyright:      (c) 2014-2016, Davy Kager <mail@davykager.nl>
  *  License:        LGPLv3
  */
 
 #ifndef _TOLK_H_
 #define _TOLK_H_
-
-#define NSCREENREADERDRIVERS 6
 
 #ifdef _EXPORTING
 #define TOLK_DLL_DECLSPEC __declspec(dllexport)
