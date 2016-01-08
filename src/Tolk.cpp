@@ -40,7 +40,6 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_Load() {
   if (g_trySAPI)
     g_sapi = new ScreenReaderDriverSAPI();
   g_isLoaded = true;
-  Tolk_DetectScreenReader();
 }
 
 TOLK_DLL_DECLSPEC bool TOLK_CALL Tolk_IsLoaded() {
@@ -73,17 +72,14 @@ TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_TrySAPI(bool trySAPI) {
       g_sapi = NULL;
     }
     g_currentScreenReaderDriver = NULL;
-    Tolk_DetectScreenReader();
   }
 }
 
 TOLK_DLL_DECLSPEC void TOLK_CALL Tolk_PreferSAPI(bool preferSAPI) {
   if (g_preferSAPI == preferSAPI) return;
   g_preferSAPI = preferSAPI;
-  if (Tolk_IsLoaded() && g_trySAPI && g_sapi) {
+  if (Tolk_IsLoaded() && g_trySAPI && g_sapi)
     g_currentScreenReaderDriver = NULL;
-    Tolk_DetectScreenReader();
-  }
 }
 
 TOLK_DLL_DECLSPEC const wchar_t * TOLK_CALL Tolk_DetectScreenReader() {
