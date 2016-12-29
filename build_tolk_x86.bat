@@ -1,7 +1,7 @@
 @echo off
 
-set PATH=%PATH%;VS140COMNTOOLS..\..\..\VC\bin
-vcvars32.bat
+set PATH=%PATH%;%VS140COMNTOOLS%..\..\..\VC\bin
+call vcvars32.bat
 
 cl /nologo /c /O2 /EHsc /GL /GR- /GS- /Gw /LD /MP /W4 /WL ^
 /D_EXPORTING /D_UNICODE /D_WINDOWS /D_WITH_JNI /DNDEBUG /DWIN32 /DUNICODE ^
