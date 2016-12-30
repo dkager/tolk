@@ -1,7 +1,6 @@
 @echo off
 
-set PATH=%PATH%;%VS140COMNTOOLS%..\..\..\VC\bin\amd64
-call vcvars64.bat
+call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\amd64\vcvars64.bat"
 
 rc /nologo /n /fo bin\TolkDotNet.res src\dotnet\TolkDotNet.rc
 
