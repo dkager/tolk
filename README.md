@@ -1,4 +1,7 @@
-% Tolk: Screen Reader Abstraction Library
+# Tolk: Screen Reader Abstraction Library
+
+* [Latest build from AppVeyor](https://ci.appveyor.com/api/projects/dkager/tolk/artifacts/tolk.zip?branch=master)
+* [Project page](https://davykager.com/projects/tolk/)
 
 ## Introduction
 
@@ -12,11 +15,6 @@ There are APIs for the following languages:
 * Python
 * AutoIt
 * PureBasic
-
-## Download
-
-* [Latest build from AppVeyor](https://ci.appveyor.com/api/projects/dkager/tolk/artifacts/tolk.zip?branch=master)
-* [Project page](https://davykager.com/projects/tolk/)
 
 ## License
 
