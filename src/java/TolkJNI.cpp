@@ -9,7 +9,7 @@
 #ifdef _WITH_JNI
 
 #include <windows.h>
-#include <jni_md.h> // Platform-specific defines, include first
+#include <win32/jni_md.h> // Platform-specific defines, include first
 #include "TolkJNI.h" // Auto-generated using ..\..\build_jni.bat
 #include "..\Tolk.h"
 
