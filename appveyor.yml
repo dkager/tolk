@@ -1,0 +1,25 @@
+version: 1.0.{build}
+environment:
+  INCLUDE: C:\Program Files\Java\jdk1.8.0\include;C:\Program Files\Java\jdk1.8.0\include\win32
+install:
+- cmd: cinst pandoc
+build_script:
+- ps: >-
+    cmd.exe /c build_dotnet.bat
+
+    cmd.exe /c build_jni.bat
+
+    cmd.exe /c build_python.bat
+
+    cmd.exe /c build_tolk_x64.bat
+
+    cmd.exe /c build_tolk_x86.bat
+
+    cmd.exe /c clean.bat
+
+    cmd.exe /c build_doc.bat
+
+    7z a tolk.zip $Env:APPVEYOR_BUILD_FOLDER\*
+artifacts:
+- path: tolk.zip
+  name: Tolk
