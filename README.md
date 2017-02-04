@@ -96,7 +96,6 @@ The following table lists the supported screen readers in the order in which the
 * SuperNova is the only screen reader that does not have a 64-bit compatible API.
 * SuperNova has support for braille, but the API does not let you use it.
 * SuperNova can speak even if the user turned the voice off, but in that state interrupts will not work.
-* ZoomText requires a registry patch before it can be used, run either `ZTFix32.reg` (32-bit) or `ZTFix64.reg` (64-bit) from the `scripts` directory.
 * Some screen readers (notably Window-Eyes and ZoomText) support many more functions, but there are no plans to implement any of them.
 * The driver for Microsoft SAPI explicitly disables XML handling because there is no way to be sure SAPI is being used and other drivers don't support this.
 
