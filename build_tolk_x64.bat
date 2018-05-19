@@ -1,6 +1,6 @@
 @echo off
 
-call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\amd64\vcvars64.bat"
+call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 cl /nologo /c /O2 /EHsc /GL /GR- /GS- /Gw /LD /MP /W4 /WL ^
 /D_EXPORTING /D_UNICODE /D_WINDOWS /D_WITH_JNI /DNDEBUG /DWIN64 /DUNICODE ^
