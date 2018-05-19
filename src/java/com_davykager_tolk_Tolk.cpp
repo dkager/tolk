@@ -10,7 +10,7 @@
 
 #include <windows.h>
 #include <win32/jni_md.h> // Platform-specific defines, include first
-#include "TolkJNI.h" // Auto-generated using ..\..\build_jni.bat
+#include "com_davykager_tolk_Tolk.h" // Auto-generated using ..\..\build_jni.bat
 #include "..\Tolk.h"
 
 extern "C" {
