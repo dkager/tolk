@@ -8,3 +8,4 @@
 *.html
 examples/bgt
 src/bgt
+src/java/com_davykager_tolk_Tolk.h
