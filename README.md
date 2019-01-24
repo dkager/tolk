@@ -15,6 +15,7 @@ There are APIs for the following languages:
 * Python
 * AutoIt
 * PureBasic
+* Ruby
 
 ## License
 
@@ -118,3 +119,4 @@ The root directory and `examples` directories contain various batch files as a s
 * Leonard de Ruijter
 * Axel Vugts
 * QuentinC, who has developed [Universal Speech](https://github.com/QuentinC-Github/UniversalSpeech), another great screen reader library
+* Dawid Pieper
