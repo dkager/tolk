@@ -1,11 +1,11 @@
+*.obj
+*.res
 *.exe
 *.dll
 *.exp
 *.lib
-*.zip
+*.class
 *.jar
 *.pyo
 *.html
-examples/bgt
-src/bgt
-src/java/com_davykager_tolk_Tolk.h
+*.zip

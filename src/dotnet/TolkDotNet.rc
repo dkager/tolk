@@ -24,7 +24,7 @@ VS_VERSION_INFO VERSIONINFO
     {
       VALUE "CompanyName", "Davy Kager"
       VALUE "FileDescription", "Tolk .NET Dynamic-Link Library"
-      VALUE "LegalCopyright", "(c) 2014, Davy Kager"
+      VALUE "LegalCopyright", "(c) 2014-2019, Davy Kager"
       VALUE "FileVersion", TOLK_FILEVERSION_STR
       VALUE "InternalName", "TolkDotNet"
       VALUE "OriginalFilename", "TolkDotNet.dll"
