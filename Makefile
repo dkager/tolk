@@ -1,6 +1,6 @@
 CD = cd
-MD = mkdir
-RD = rmdir
+MD = md
+RD = rd
 RDFLAGS = /Q /S
 CP = copy
 ZIP = 7z
