@@ -23,7 +23,7 @@ dist:
 	$(MD) $(OUTDIR)
 	$(CP) LICENSE*.txt $(OUTDIR)
 	$(MD) $(OUTDIR32)
-	$(CD) $(SRCDIR) && $(MAKE) /$(MAKEFLAGS) OUTDIR=$(OUTDIR32)
+	$(CD) $(SRCDIR) && vcvarsall x86 && $(MAKE) /$(MAKEFLAGS) OUTDIR=$(OUTDIR32)
 	$(CP) $(LIBSDIR32)\* $(OUTDIR32)
 	$(MD) $(OUTDIR64)
 	$(CD) $(SRCDIR) && vcvarsall x64 && $(MAKE) /$(MAKEFLAGS) OUTDIR=$(OUTDIR64)
