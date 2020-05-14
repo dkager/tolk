@@ -1,0 +1,39 @@
+name: release
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: build
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ilammy/msvc-dev-cmd@v1
+    - run: echo "::add-path::C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
+    - run: echo "::set-env name=INCLUDE::$env:INCLUDE;$env:JAVA_HOME\include;$env:JAVA_HOME\include\win32"
+    - run: |
+        choco install pandoc
+        nmake dist
+    - uses: actions/upload-artifact@v1
+      with:
+        name: package
+        path: tolk.zip
+
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+    - uses: actions/download-artifact@v1
+      with:
+        name: package
+    - uses: meeDamian/github-release@2.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.ref }}
+        files: ./package/tolk.zip
+        gzip: false
+        allow_override: true
