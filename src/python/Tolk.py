@@ -2,11 +2,16 @@
  #  Product:        Tolk
  #  File:           Tolk.py
  #  Description:    Python wrapper module.
- #  Copyright:      (c) 2014, Davy Kager <mail@davykager.nl>
+ #  Copyright:      (c) 2014-2021, Davy Kager <mail@davykager.nl>, Quin Marilyn <quin.marilyn05@gmail.com>
  #  License:        LGPLv3
  ##
 
 from ctypes import cdll, CFUNCTYPE, c_bool, c_wchar_p
+import os
+import sys
+
+if sys.version_info[1] >= 8:
+	os.add_dll_directory(os.getcwd())
 
 _tolk = cdll.Tolk
 
