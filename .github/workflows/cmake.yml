@@ -1,0 +1,42 @@
+name: Windows
+
+on: [push]
+
+jobs:
+  msvc:
+    strategy:
+      matrix:
+        include:
+          - name: VS2019Release32
+            vmimage: windows-2019
+            cmakeplatform: Win32
+          - name: VS2019Release64
+            vmimage: windows-2019
+            cmakeplatform: x64
+    runs-on: ${{ matrix.vmimage }}
+    name: ${{ matrix.name }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate CMake Projects
+      working-directory: ${{runner.workspace}}
+      shell: cmd
+      run: |
+        cmake -S Tolk -B output -A ${{ matrix.cmakeplatform }} -DCMAKE_INSTALL_PREFIX=install
+
+    - name: Build CMake Projects
+      working-directory: ${{runner.workspace}}
+      shell: cmd
+      run: |
+        cmake --build output
+
+    - name: Install CMake Projects
+      working-directory: ${{runner.workspace}}
+      shell: cmd
+      run: |
+        cmake --build output --target install
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: tolk-binaries-${{ matrix.cmakeplatform }}
+        path: ${{runner.workspace}}/install
