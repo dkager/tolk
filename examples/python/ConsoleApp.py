@@ -23,9 +23,8 @@ print("Initializing Tolk...")
 Tolk.load()
 
 print("Querying for the active screen reader driver...")
-name = Tolk.detect_screen_reader()
-if name:
-  print("The active screen reader driver is: " + name)
+if name := Tolk.detect_screen_reader():
+  print(f'The active screen reader driver is: {name}')
 else:
   print("None of the supported screen readers is running\n")
 
