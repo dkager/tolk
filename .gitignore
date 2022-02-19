@@ -9,3 +9,5 @@
 *.pyo
 *.html
 *.zip
+RC*
+build/
