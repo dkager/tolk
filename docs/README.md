@@ -1,7 +1,6 @@
 # Tolk: Screen Reader Abstraction Library
 
-* [Latest build from AppVeyor](https://ci.appveyor.com/api/projects/dkager/tolk/artifacts/tolk.zip?branch=master)
-* [Project page](https://davykager.com/projects/tolk/)
+NOTE: this project is not currently being developed.
 
 ## Introduction
 
@@ -25,7 +24,7 @@ Client libraries and headers are distributed under their own license.
 
 The key components of Tolk are the screen reader drivers. They wrap a specific screen reader API into an abstract interface which is then used by Tolk's auto-detection mechanism. SAPI, albeit not a screen reader, also has its own driver. To keep things simple and secure, these screen reader drivers are not exposed to client code.
 
-Functions that output text or that silence speech are asynchronous. That is, they return immediately once the appropriate commands have been queued for processing by the active screen reader. All other functions are synchronous. that is, they return only when their work is done.
+Functions that output text or that silence speech are asynchronous. That is, they return immediately once the appropriate commands have been queued for processing by the active screen reader. All other functions are synchronous. That is, they return only when their work is done.
 
 Finally, a few words on multi-threaded applications. Tolk is not thread-safe. Also, some of the screen reader drivers use COM. You have two options for initializing COM:
 
@@ -98,6 +97,7 @@ The following table lists the supported screen readers in the order in which the
 * SuperNova can speak even if the user turned the voice off, but in that state interrupts will not work.
 * Some screen readers (notably Window-Eyes and ZoomText) support many more functions, but there are no plans to implement any of them.
 * The driver for Microsoft SAPI explicitly disables XML handling because there is no way to be sure SAPI is being used and other drivers don't support this.
+* Window-Eyes is obsolete, but support has not yet been removed.
 
 ## Compiling
 
