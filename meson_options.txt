@@ -1,0 +1,5 @@
+option('jni', type : 'boolean', value : false, description: 'Build with Java Native Interface support')
+option('dotnet', type : 'feature', value : 'auto', description: 'Build DotNet bindings')
+option('python', type : 'feature', value : 'auto', description: 'Install Python bindings')
+option('java', type : 'feature', value : 'auto', description: 'Build Java bindings. Implies -Djni=true')
+option('docs', type : 'feature', value : 'auto', description: 'Build documentation using Pandoc')
